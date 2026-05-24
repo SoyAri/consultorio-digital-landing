@@ -30,7 +30,7 @@ const IconMap = {
           <div class="sidebar-dot red"></div>
           <div class="sidebar-dot yellow"></div>
           <div class="sidebar-dot green"></div>
-          <span class="simulator__sidebar-title">Modulos de Elite</span>
+          <span class="simulator__sidebar-title">Modulos del sistema</span>
         </div>
         <nav class="simulator__nav" aria-label="Navegador del simulador">
           {
@@ -208,7 +208,7 @@ const IconMap = {
                 <ul class="bullet-checklist">
                   <li><Check size={14} class="text-cta" /> Cero fricción en el login</li>
                   <li><Check size={14} class="text-cta" /> Confirmación con un solo tap</li>
-                  <li><Check size={14} class="text-cta" /> Acceso seguro a presupuestos</li>
+                  <li><Check size={14} class="text-cta" /> Acceso seguro a historial médico</li>
                 </ul>
               </div>
             </div>
@@ -1199,28 +1199,107 @@ const IconMap = {
     gap: 0.5rem;
   }
 
+  /* ===== MOBILE RESPONSIVE ===== */
   @media (max-width: 992px) {
     .simulator {
       grid-template-columns: 1fr;
     }
 
+    /* Ocultar header macOS (dots + título) — no tiene sentido en móvil */
+    .simulator__sidebar-header {
+      display: none;
+    }
+
     .simulator__sidebar {
       border-right: none;
       border-bottom: 1px solid var(--color-border);
+      padding: var(--space-xs) var(--space-sm);
+      gap: 0;
     }
 
+    /* Nav horizontal pill tabs */
     .simulator__nav {
       flex-direction: row;
       overflow-x: auto;
-      padding-bottom: var(--space-xs);
+      scrollbar-width: none;
+      gap: 6px;
+      padding-block: 6px;
+    }
+
+    .simulator__nav::-webkit-scrollbar {
+      display: none;
     }
 
     .simulator__nav-item {
       white-space: nowrap;
+      flex-shrink: 0;
+      padding: 0.45rem 0.9rem;
+      border-radius: var(--radius-full);
+      font-size: 0.82rem;
+      gap: 6px;
+    }
+
+    /* Reducir header del simulador */
+    .simulator__screen {
+      min-height: 460px;
+    }
+
+    .simulator__search-bar {
+      width: auto;
+      flex: 1;
+      max-width: 260px;
+    }
+
+    /* Ocultar nombre de usuario — solo avatar */
+    .user-name {
+      display: none;
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 640px) {
+    /* Solo íconos en los tabs — labels desaparecen */
+    .nav-item-text {
+      display: none;
+    }
+
+    .simulator__nav-item {
+      padding: 0.55rem 0.75rem;
+    }
+
+    /* Agenda: widgets arriba en fila, timeline abajo */
+    .agenda-view__layout {
+      grid-template-columns: 1fr;
+      gap: var(--space-sm);
+    }
+
+    .agenda-view__widgets {
+      flex-direction: row;
+      gap: var(--space-sm);
+    }
+
+    .agenda-view__widgets .widget-card {
+      flex: 1;
+    }
+
+    .agenda-view__widgets .widget-card.mt-2 {
+      margin-top: 0;
+    }
+
+    /* Simplificar header de la agenda */
+    .agenda-view__date {
+      display: none;
+    }
+
+    /* Acortar barra de búsqueda */
+    .search-indicator {
+      display: none;
+    }
+
+    .search-text {
+      font-size: 0.72rem;
+    }
+
+    /* Feature cards en columna */
     .solution__grid {
       grid-template-columns: 1fr;
       gap: var(--space-md);
@@ -1228,6 +1307,21 @@ const IconMap = {
 
     .patient-view {
       grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .simulator__screen {
+      min-height: 420px;
+    }
+
+    .simulator__screen-header {
+      padding: 0 var(--space-sm);
+      height: 48px;
+    }
+
+    .simulator__screen-content {
+      padding: var(--space-sm);
     }
   }
 
@@ -1544,5 +1638,71 @@ const IconMap = {
   .text-muted { color: var(--color-text-muted); }
   .text-sm { font-size: 0.8rem; }
   .inline { display: inline; }
+
+  /* ===== MOBILE OVERRIDES — colocados al final para ganar en la cascada ===== */
+  @media (max-width: 640px) {
+    /* Tabs: llenan todo el ancho de forma uniforme */
+    .simulator__nav {
+      justify-content: stretch;
+    }
+
+    .simulator__nav-item {
+      flex: 1;
+      justify-content: center;
+      padding: 0.6rem 0;
+    }
+
+    /* Agenda: una columna — timeline debajo de los widgets */
+    .agenda-view__layout {
+      grid-template-columns: 1fr;
+      gap: var(--space-sm);
+    }
+
+    /* Widgets: fila lado a lado */
+    .agenda-view__widgets {
+      flex-direction: row;
+      gap: var(--space-sm);
+    }
+
+    .agenda-view__widgets .widget-card {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .agenda-view__widgets .widget-card.mt-2 {
+      margin-top: 0;
+    }
+
+    /* Timeline ocupa todo el ancho */
+    .agenda-view__calendar {
+      width: 100%;
+    }
+
+    /* Ocultar botón "Nueva Cita" — se corta en pantallas chicas */
+    .agenda-view__header-actions .btn-mini {
+      display: none;
+    }
+
+    /* Texto de los eventos del timeline envuelve correctamente */
+    .timeline-event {
+      white-space: normal;
+      font-size: 0.75rem;
+    }
+
+    /* Timeline row más compacto */
+    .timeline-row {
+      gap: var(--space-sm);
+    }
+  }
+
+  @media (max-width: 400px) {
+    .simulator__screen-content {
+      padding: var(--space-sm);
+    }
+
+    .agenda-view__header {
+      gap: 4px;
+    }
+  }
 
 </style>

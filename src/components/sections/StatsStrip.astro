@@ -85,9 +85,15 @@ const { benefits } = siteConfig;
   }
 
   @media (max-width: 768px) {
+    .stats-strip {
+      padding: var(--space-md) 0;
+    }
+
     .stats-strip__list {
-      justify-content: center;
-      gap: var(--space-lg);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-sm);
+      justify-items: center;
     }
 
     .stats-strip__sep {
@@ -97,8 +103,47 @@ const { benefits } = siteConfig;
     .stats-strip__item {
       flex-direction: column;
       text-align: center;
-      min-width: 120px;
-      gap: 0.25rem;
+      align-items: center;
+      min-width: unset;
+      max-width: unset;
+      width: 100%;
+      gap: 0.2rem;
+    }
+
+    .stats-strip__value {
+      font-size: clamp(1.4rem, 6vw, 2rem);
+    }
+
+    .stats-strip__label {
+      font-size: 0.75rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .stats-strip {
+      padding: var(--space-sm) 0;
+    }
+
+    .stats-strip__list {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+    }
+
+    .stats-strip__item {
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+      gap: 2px;
+      padding: var(--space-xs) 4px;
+    }
+
+    .stats-strip__value {
+      font-size: clamp(1.1rem, 5vw, 1.5rem);
+    }
+
+    .stats-strip__label {
+      font-size: 0.62rem;
+      line-height: 1.3;
     }
   }
 </style>
