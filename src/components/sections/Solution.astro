@@ -1142,4 +1142,65 @@ const IconMap = {
       grid-template-columns: 1fr;
     }
   }
+
+  /* ===== LIGHT MODE FIXES ===== */
+:global([data-theme="light"]) .simulator {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+:global([data-theme="light"]) .simulator__sidebar {
+  background: rgba(248, 250, 252, 0.95);
+}
+
+:global([data-theme="light"]) .simulator__screen {
+  background: #ffffff;
+}
+
+:global([data-theme="light"]) .simulator__screen-header {
+  background: rgba(248, 250, 252, 0.95);
+}
+
+:global([data-theme="light"]) .agenda-card {
+  background: #ffffff;
+}
+
+:global([data-theme="light"]) .odontograma-details {
+  background: #ffffff;
+}
+
+:global([data-theme="light"]) .patient-view__phone-frame {
+  background: #f8fafc;
+}
+
+:global([data-theme="light"]) .whatsapp-view {
+  background: #ffffff;
+}
+
+:global([data-theme="light"]) .chat-header,
+:global([data-theme="light"]) .chat-footer {
+  background: #f8fafc;
+}
+
+:global([data-theme="light"]) .chat-bubble.received {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+:global([data-theme="light"]) .chat-username {
+  color: #0f172a;
+}
+
+:global([data-theme="light"]) .phone-screen {
+  color: #0f172a;
+}
+
+:global([data-theme="light"]) .phone-history-item h6 {
+  color: #0f172a;
+}
+
+:global([data-theme="light"]) .phone-card-title,
+:global([data-theme="light"]) .phone-card-desc,
+:global([data-theme="light"]) .phone-card-subtitle {
+  color: #0f172a;
+}
 </style>

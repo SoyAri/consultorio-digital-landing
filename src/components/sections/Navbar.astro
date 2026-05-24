@@ -125,6 +125,14 @@ import { Stethoscope, Sun, Moon } from 'lucide-astro';
     border-bottom: 1px solid var(--color-border);
     display: flex;
     align-items: center;
+
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+    :global([data-theme="dark"]) .navbar {
+    background: rgba(10, 15, 30, 0.96);
   }
 
   .navbar__inner {
@@ -135,6 +143,7 @@ import { Stethoscope, Sun, Moon } from 'lucide-astro';
   }
 
   .navbar__logo {
+   
     display: flex;
     align-items: center;
     gap: 0.5rem;
