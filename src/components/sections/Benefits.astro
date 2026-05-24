@@ -26,7 +26,7 @@ const roleColors = [
   </div>
 
   <div class="container relative z-10">
-    <!-- Header Section (Realineado a la izquierda) -->
+    <!-- Header Section -->
     <div class="benefits__header">
       <span class="benefits__tag">{benefits.eyebrow}</span>
       <h2 class="benefits__title">
@@ -46,7 +46,7 @@ const roleColors = [
       }
     </div>
 
-    <!-- Roles Section (Carrusel de Colores) -->
+    <!-- Roles Section -->
     <div class="roles">
       <div class="roles__header">
         <h3 class="roles__title">{benefits.rolesSection.title}</h3>
@@ -80,7 +80,7 @@ const roleColors = [
       </div>
     </div>
 
-    <!-- CTA Section Rediseñado -->
+    <!-- CTA Section Perfeccionada -->
     <div class="benefits__cta">
       <div class="modern-cta">
         <div class="modern-cta__glass"></div>
@@ -113,6 +113,7 @@ const roleColors = [
     position: relative;
     overflow: hidden;
     color: var(--color-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   /* Imágenes decorativas */
@@ -125,6 +126,11 @@ const roleColors = [
     z-index: 0;
     pointer-events: none;
     transform: rotate(15deg);
+    transition: opacity 0.3s ease;
+  }
+
+  [data-theme="dark"] .tooth-image-container {
+    opacity: 0.12;
   }
 
   .compu-image-container {
@@ -136,6 +142,11 @@ const roleColors = [
     z-index: 0;
     pointer-events: none;
     transform: rotate(-15deg);
+    transition: opacity 0.3s ease;
+  }
+
+  [data-theme="dark"] .compu-image-container {
+    opacity: 0.12;
   }
 
   .tooth-img, .compu-img {
@@ -215,7 +226,7 @@ const roleColors = [
     color: var(--color-text-muted);
   }
 
-  /* Grid de Beneficios (Estilo Anterior Carrusel) */
+  /* Grid de Beneficios */
   .benefits-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -226,7 +237,7 @@ const roleColors = [
   .benefit-card {
     background: var(--color-surface);
     padding: 40px 24px;
-    border-radius: 24px;
+    border-radius: var(--radius-md);
     border: 1px solid var(--color-border);
     transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
     position: relative;
@@ -235,11 +246,18 @@ const roleColors = [
     flex-direction: column;
   }
 
+  /* Ajuste solicitado: NO ponerse blanco en modo oscuro */
   .benefit-card.is-active-carousel {
-    background: white;
+    background: var(--color-surface);
     transform: translateY(-12px);
     border-color: var(--accent);
-    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--shadow-lg);
+  }
+
+  [data-theme="dark"] .benefit-card.is-active-carousel {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: var(--accent);
+    box-shadow: 0 0 30px rgba(37, 99, 235, 0.1);
   }
 
   .benefit-card.is-active-carousel .card-indicator {
@@ -250,7 +268,7 @@ const roleColors = [
     background: var(--accent);
     color: white;
     transform: scale(1.1) rotate(4deg);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
   }
 
   .card-indicator {
@@ -263,7 +281,7 @@ const roleColors = [
   .icon-wrapper {
     width: 52px;
     height: 52px;
-    border-radius: 14px;
+    border-radius: var(--radius-sm);
     background: var(--bg-soft);
     display: flex;
     align-items: center;
@@ -313,31 +331,46 @@ const roleColors = [
     top: 20px; right: 20px;
     font-size: 28px;
     font-weight: 800;
-    color: rgba(0, 0, 0, 0.04);
+    color: var(--color-text);
+    opacity: 0.05;
     line-height: 1;
     font-family: var(--font-title);
+    transition: opacity 0.3s ease;
   }
 
-  /* Modern CTA Block */
+  .benefit-card.is-active-carousel .card-num {
+    opacity: 0.1;
+  }
+
+  /* Modern CTA Block - Integración mejorada */
   .benefits__cta {
     margin-top: var(--space-xl);
   }
 
   .modern-cta {
-    background: var(--color-text);
-    border-radius: 32px;
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
     padding: var(--space-xl);
     position: relative;
     overflow: hidden;
-    color: white;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-lg);
+    transition: all 0.3s ease;
+  }
+
+  [data-theme="dark"] .modern-cta {
+    background: rgba(255, 255, 255, 0.02);
+    border-color: rgba(255, 255, 255, 0.1);
   }
 
   .modern-cta__glass {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(circle at 100% 0%, rgba(37, 99, 235, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 0% 100%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+    background: radial-gradient(circle at 100% 0%, var(--color-primary-muted) 0%, transparent 50%),
+                radial-gradient(circle at 0% 100%, var(--color-accent-light) 0%, transparent 50%);
     pointer-events: none;
+    opacity: 0.5;
   }
 
   .modern-cta__content {
@@ -359,12 +392,12 @@ const roleColors = [
     margin-bottom: 1rem;
     letter-spacing: -0.03em;
     font-family: var(--font-title);
-    color: white;
+    color: var(--color-text);
   }
 
   .modern-cta__body {
     font-size: 1.2rem;
-    opacity: 0.8;
+    color: var(--color-text-muted);
     max-width: 50ch;
     line-height: 1.6;
   }
@@ -377,27 +410,30 @@ const roleColors = [
   }
 
   .cta-button-premium {
-    background: white !important;
-    color: var(--color-text) !important;
+    background: var(--color-primary) !important;
+    color: white !important;
     padding: 1.25rem 2.5rem !important;
     font-size: 1.1rem !important;
     font-weight: 700 !important;
-    border-radius: 16px !important;
+    border-radius: var(--radius-md) !important;
     display: flex !important;
     align-items: center !important;
     gap: 12px !important;
-    transition: transform 0.3s ease !important;
+    transition: all 0.3s ease !important;
     border: none !important;
+    box-shadow: var(--shadow-glow);
   }
 
   .cta-button-premium:hover {
-    transform: scale(1.05) !important;
+    transform: scale(1.05) translateY(-2px) !important;
+    background: var(--color-primary-hover) !important;
   }
 
   .cta-note {
     font-size: 0.85rem;
     opacity: 0.6;
     font-weight: 500;
+    color: var(--color-text-muted);
   }
 
   @media (max-width: 1024px) {
