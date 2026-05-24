@@ -54,24 +54,27 @@
 
 <div class="navbar__spacer" aria-hidden="true"></div>
 
-<script>
-  const hamburger = document.getElementById('hamburger') as HTMLButtonElement;
-  const mobileMenu = document.getElementById('mobile-menu') as HTMLDivElement;
+<script is:inline>
+  (function () {
+    var hamburger = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobile-menu');
+    if (!hamburger || !mobileMenu) return;
 
-  hamburger?.addEventListener('click', () => {
-    const isOpen = !mobileMenu.hidden;
-    mobileMenu.hidden = isOpen;
-    hamburger.setAttribute('aria-expanded', String(!isOpen));
-    hamburger.setAttribute('aria-label', isOpen ? 'Abrir menú' : 'Cerrar menú');
-  });
-
-  mobileMenu?.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      mobileMenu.hidden = true;
-      hamburger?.setAttribute('aria-expanded', 'false');
-      hamburger?.setAttribute('aria-label', 'Abrir menú');
+    hamburger.addEventListener('click', function () {
+      var isOpen = !mobileMenu.hidden;
+      mobileMenu.hidden = isOpen;
+      hamburger.setAttribute('aria-expanded', String(!isOpen));
+      hamburger.setAttribute('aria-label', isOpen ? 'Abrir menú' : 'Cerrar menú');
     });
-  });
+
+    mobileMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mobileMenu.hidden = true;
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', 'Abrir menú');
+      });
+    });
+  })();
 </script>
 
 <style>
