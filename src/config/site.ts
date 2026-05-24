@@ -69,10 +69,10 @@ export const siteConfig: SiteConfig = {
     ctaText: "Hablar con un asesor →",
     impactLabel: "Sin Consultorio Digital, cada semana:",
     impacts: [
-      { icon: "clock", title: "10–20 min perdidos", desc: "por paciente buscando expedientes" },
-      { icon: "message-square", title: "Recordatorios manuales", desc: "por WhatsApp que dependen de que alguien no olvide enviarlos" },
-      { icon: "calendar", title: "Citas duplicadas", desc: "por manejo en papel o Excel sin sincronización" },
-      { icon: "folder", title: "Expedientes dispersos", desc: "entre papel, celular y correos sin orden" },
+      { icon: "⏱️", title: "10–20 min perdidos", desc: "por paciente buscando expedientes" },
+      { icon: "💬", title: "Recordatorios manuales", desc: "por WhatsApp que dependen de que alguien no olvide enviarlos" },
+      { icon: "📋", title: "Citas duplicadas", desc: "por manejo en papel o Excel sin sincronización" },
+      { icon: "📁", title: "Expedientes dispersos", desc: "entre papel, celular y correos sin orden" },
     ],
     stat: {
       number: "73%",
@@ -80,17 +80,17 @@ export const siteConfig: SiteConfig = {
     },
     cards: [
       {
-        icon: "calendar",
+        icon: "📋",
         title: "Agendas en papel y Excel",
         body: "Citas duplicadas, letra ilegible de terceros y búsquedas interminables. Cuando el cuaderno se pierde, la información del paciente desaparece contigo."
       },
       {
-        icon: "message-square",
+        icon: "💬",
         title: "Confirmaciones por WhatsApp",
         body: "Mensajes sin respuesta, pacientes que no llegan y recordatorios manuales que dependen de que tú o tu asistente no olviden enviarlos ese día."
       },
       {
-        icon: "folder",
+        icon: "📁",
         title: "Expedientes fragmentados",
         body: "Radiografías en el celular, notas clínicas en papel y presupuestos en correos. Nadie tiene el cuadro completo del paciente a la mano cuando lo necesita."
       }
@@ -103,7 +103,7 @@ export const siteConfig: SiteConfig = {
     features: [
       {
         num: "01",
-        icon: "calendar",
+        icon: "📅",
         title: "Agenda digital centralizada",
         body: "Gestiona todas las citas desde una sola pantalla. Tu secretaria, tú y tus asociados ven el calendario en tiempo real. Sin llamadas, sin mensajes — las confirmaciones llegan solas.",
         bullets: [
@@ -114,7 +114,7 @@ export const siteConfig: SiteConfig = {
       },
       {
         num: "02",
-        icon: "activity",
+        icon: "🦷",
         title: "Odontograma y expediente digital",
         body: "Registra diagnósticos y tratamientos directamente sobre el odontograma interactivo. El expediente completo del paciente, disponible en segundos sin buscar entre papeles.",
         bullets: [
@@ -125,7 +125,7 @@ export const siteConfig: SiteConfig = {
       },
       {
         num: "03",
-        icon: "key",
+        icon: "🔐",
         title: "Acceso seguro para pacientes",
         body: "Tus pacientes inician sesión con un código OTP enviado a su celular. Sin contraseñas que olvidar, sin fricción. Ellos consultan sus citas, historial y presupuestos desde su teléfono.",
         bullets: [
@@ -136,7 +136,7 @@ export const siteConfig: SiteConfig = {
       },
       {
         num: "04",
-        icon: "bell",
+        icon: "🔔",
         title: "Recordatorios automáticos",
         body: "El sistema avisa a tus pacientes antes de cada cita sin que nadie tenga que hacerlo manualmente. Las inasistencias se reducen desde el primer día de uso.",
         bullets: [
@@ -148,20 +148,20 @@ export const siteConfig: SiteConfig = {
     ]
   },
   benefits: {
-    eyebrow: "Por qué elegirnos",
+    eyebrow: "Beneficios",
     headline: "Más tiempo para tus pacientes, menos tiempo en papeleo",
     subheadline: "Las clínicas que usan Consultorio Digital reportan menos inasistencias, expedientes más completos y un flujo de trabajo más tranquilo desde el primer mes.",
     metrics: [
       { value: "-60%", label: "Inasistencias gracias a recordatorios automáticos" },
       { value: "15 min", label: "Ahorrados por cita en búsqueda de expedientes" },
-      { value: "100%", label: "Digital — sin papel, sin información perdida" }
+      { value: "100% Digital", label: "Sin papel y sin información perdida" }
     ],
     rolesSection: {
       title: "Cada persona en tu clínica tiene su propio acceso",
       subtitle: "No más contraseñas compartidas. Cada rol ve solo lo que necesita.",
       roles: [
         {
-          icon: "stethoscope",
+          icon: "👨‍⚕️",
           name: "Doctor",
           perms: [
             "Expedientes y odontogramas",
@@ -171,7 +171,7 @@ export const siteConfig: SiteConfig = {
           ]
         },
         {
-          icon: "layers",
+          icon: "🗂️",
           name: "Secretaria",
           perms: [
             "Gestión de citas y agenda",
@@ -181,7 +181,7 @@ export const siteConfig: SiteConfig = {
           ]
         },
         {
-          icon: "shield",
+          icon: "🏥",
           name: "Administrador",
           perms: [
             "Alta de usuarios y roles",
@@ -191,7 +191,7 @@ export const siteConfig: SiteConfig = {
           ]
         },
         {
-          icon: "user",
+          icon: "🙋",
           name: "Paciente",
           perms: [
             "Sus citas programadas",
