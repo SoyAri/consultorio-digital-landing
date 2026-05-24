@@ -1,0 +1,25 @@
+---
+import { siteConfig } from '../../config/site';
+
+interface Props {
+  pages?: string[];
+}
+
+const { pages = siteConfig.crispPages } = Astro.props;
+const show = pages.includes(Astro.url.pathname);
+const crispId = siteConfig.crispId;
+---
+
+{show && (
+  <script is:inline define:vars={{ crispId }}>
+    window.$crisp=[];
+    window.CRISP_WEBSITE_ID=crispId;
+    (function(){
+      var d=document;
+      var s=d.createElement("script");
+      s.src="https://client.crisp.chat/l.js";
+      s.async=1;
+      d.getElementsByTagName("head")[0].appendChild(s);
+    })();
+  </script>
+)}

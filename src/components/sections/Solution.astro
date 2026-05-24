@@ -1,0 +1,175 @@
+---
+import { siteConfig } from '../../config/site';
+import Card from '../ui/Card.astro';
+
+const { solution } = siteConfig;
+---
+
+<section id="solution" class="solution">
+  <div class="container">
+    <p class="solution__eyebrow">{solution.eyebrow}</p>
+
+    <h2 class="solution__headline">
+      {solution.headline}
+    </h2>
+
+    <p class="solution__subheadline">
+      {solution.subheadline}
+    </p>
+
+    <div class="solution__grid">
+      {
+        solution.features.map((feat, index) => (
+          <Card class="solution__card" hoverEffect={true}>
+            <div class="solution__card-top">
+              <span class="solution__card-icon animate-float" aria-hidden="true" style={`animation-delay: ${index * 0.4}s`}>
+                {feat.icon}
+              </span>
+              <span class="solution__card-num" aria-hidden="true">
+                {feat.num}
+              </span>
+            </div>
+            
+            <h3 class="solution__card-title">{feat.title}</h3>
+            
+            <p class="solution__card-body">
+              {feat.body}
+            </p>
+            
+            <ul class="solution__card-list">
+              {
+                feat.bullets.map((bullet) => (
+                  <li>{bullet}</li>
+                ))
+              }
+            </ul>
+          </Card>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .solution {
+    background: var(--color-surface);
+    padding: var(--space-2xl) 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .solution__eyebrow {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: var(--space-sm);
+  }
+
+  .solution__headline {
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--color-text);
+    margin-bottom: var(--space-md);
+    letter-spacing: -0.015em;
+  }
+
+  .solution__subheadline {
+    font-size: 1.15rem;
+    color: var(--color-text-muted);
+    max-width: 60ch;
+    line-height: 1.75;
+    margin-bottom: var(--space-xl);
+  }
+
+  .solution__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+  }
+
+  .solution__card {
+    background: var(--color-bg);
+    padding: var(--space-xl) var(--space-lg) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .solution__card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-xs);
+  }
+
+  .solution__card-icon {
+    font-size: 2.75rem;
+    line-height: 1;
+    display: inline-block;
+  }
+
+  .solution__card-num {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: white;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    border-radius: 50%;
+    width: 2.25rem;
+    height: 2.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .solution__card-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .solution__card-body {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    flex: 1;
+  }
+
+  .solution__card-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: auto;
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .solution__card-list li {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .solution__card-list li::before {
+    content: '✓';
+    color: var(--color-cta);
+    font-weight: 800;
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+
+  @media (max-width: 768px) {
+    .solution__grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+  }
+</style>
