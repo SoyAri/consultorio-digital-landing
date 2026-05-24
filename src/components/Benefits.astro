@@ -1,0 +1,295 @@
+---
+---
+<section id="benefits" class="benefits">
+  <div class="container">
+
+    <p class="benefits__eyebrow">Por qué elegirnos</p>
+
+    <h2 class="benefits__headline">
+      Más tiempo para tus pacientes,<br />menos tiempo en papeleo
+    </h2>
+
+    <p class="benefits__subheadline">
+      <!-- TODO: Actualizar con métricas reales una vez que el producto esté en uso -->
+      Las clínicas que usan Consultorio Digital reportan menos inasistencias,
+      expedientes más completos y un flujo de trabajo más tranquilo desde el primer mes.
+    </p>
+
+    <!-- Métricas destacadas -->
+    <div class="benefits__metrics">
+
+      <div class="benefits__metric">
+        <!-- TODO: Reemplazar con dato real validado -->
+        <span class="benefits__metric-number">-60%</span>
+        <span class="benefits__metric-label">Inasistencias gracias a recordatorios automáticos</span>
+      </div>
+
+      <div class="benefits__metric">
+        <!-- TODO: Reemplazar con dato real validado -->
+        <span class="benefits__metric-number">15 min</span>
+        <span class="benefits__metric-label">Ahorrados por cita en búsqueda de expedientes</span>
+      </div>
+
+      <div class="benefits__metric">
+        <span class="benefits__metric-number">100%</span>
+        <span class="benefits__metric-label">Digital — sin papel, sin información perdida</span>
+      </div>
+
+    </div>
+
+    <!-- Roles y permisos -->
+    <div class="benefits__roles-section">
+      <h3 class="benefits__roles-title">Cada persona en tu clínica tiene su propio acceso</h3>
+      <p class="benefits__roles-subtitle">
+        No más contraseñas compartidas. Cada rol ve solo lo que necesita.
+      </p>
+
+      <div class="benefits__roles">
+
+        <div class="benefits__role">
+          <!-- TODO: Reemplazar emoji con ícono SVG -->
+          <div class="benefits__role-icon" aria-hidden="true">👨‍⚕️</div>
+          <h4 class="benefits__role-name">Doctor</h4>
+          <ul class="benefits__role-perms">
+            <li>Expedientes y odontogramas</li>
+            <li>Agenda completa del consultorio</li>
+            <li>Notas clínicas y diagnósticos</li>
+            <li>Reportes de la clínica</li>
+          </ul>
+        </div>
+
+        <div class="benefits__role">
+          <!-- TODO: Reemplazar emoji con ícono SVG -->
+          <div class="benefits__role-icon" aria-hidden="true">🗂️</div>
+          <h4 class="benefits__role-name">Secretaria</h4>
+          <ul class="benefits__role-perms">
+            <li>Gestión de citas y agenda</li>
+            <li>Datos generales del paciente</li>
+            <li>Confirmaciones y recordatorios</li>
+            <li>Sin acceso a notas clínicas</li>
+          </ul>
+        </div>
+
+        <div class="benefits__role">
+          <!-- TODO: Reemplazar emoji con ícono SVG -->
+          <div class="benefits__role-icon" aria-hidden="true">🏥</div>
+          <h4 class="benefits__role-name">Administrador</h4>
+          <ul class="benefits__role-perms">
+            <li>Alta de usuarios y roles</li>
+            <li>Configuración de la clínica</li>
+            <li>Reportes y estadísticas</li>
+            <li>Acceso total al sistema</li>
+          </ul>
+        </div>
+
+        <div class="benefits__role">
+          <!-- TODO: Reemplazar emoji con ícono SVG -->
+          <div class="benefits__role-icon" aria-hidden="true">🙋</div>
+          <h4 class="benefits__role-name">Paciente</h4>
+          <ul class="benefits__role-perms">
+            <li>Sus citas programadas</li>
+            <li>Historial de tratamientos</li>
+            <li>Presupuestos recibidos</li>
+            <li>Login sin contraseña (OTP)</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CTA final -->
+    <div class="benefits__cta-block">
+      <h3 class="benefits__cta-headline">¿Listo para modernizar tu clínica?</h3>
+      <p class="benefits__cta-body">
+        Habla con nosotros hoy. Te mostramos el sistema en 15 minutos y resolvemos
+        todas tus dudas sin compromiso.
+      </p>
+      <button
+        class="benefits__cta-btn"
+        onclick="window.$crisp && window.$crisp.push(['do', 'chat:open'])"
+        type="button"
+      >
+        Hablar con un asesor ahora
+      </button>
+      <!-- TODO: Agregar enlace secundario a demo o video cuando esté disponible -->
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .benefits {
+    background: var(--color-bg);
+    padding: var(--space-2xl) 0;
+  }
+
+  .benefits__eyebrow {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin-bottom: var(--space-sm);
+  }
+
+  .benefits__headline {
+    font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--color-text);
+    margin-bottom: var(--space-md);
+  }
+
+  .benefits__subheadline {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    max-width: 60ch;
+    line-height: 1.7;
+    margin-bottom: var(--space-xl);
+  }
+
+  /* Métricas */
+  .benefits__metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .benefits__metric {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+  }
+
+  .benefits__metric-number {
+    display: block;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: var(--color-primary);
+    line-height: 1;
+    margin-bottom: var(--space-xs);
+  }
+
+  .benefits__metric-label {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.45;
+  }
+
+  /* Roles */
+  .benefits__roles-section {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .benefits__roles-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: var(--space-xs);
+  }
+
+  .benefits__roles-subtitle {
+    font-size: 0.975rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-lg);
+  }
+
+  .benefits__roles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-md);
+  }
+
+  .benefits__role {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-top: 3px solid var(--color-primary);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .benefits__role-icon {
+    font-size: 2rem;
+    margin-bottom: var(--space-sm);
+    line-height: 1;
+  }
+
+  .benefits__role-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: var(--space-sm);
+  }
+
+  .benefits__role-perms {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .benefits__role-perms li {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+
+  .benefits__role-perms li::before {
+    content: '· ';
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+
+  /* CTA block */
+  .benefits__cta-block {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    text-align: center;
+    color: white;
+  }
+
+  .benefits__cta-headline {
+    font-size: clamp(1.4rem, 3vw, 2.1rem);
+    font-weight: 800;
+    margin-bottom: var(--space-sm);
+  }
+
+  .benefits__cta-body {
+    font-size: 1rem;
+    opacity: 0.9;
+    max-width: 50ch;
+    margin-inline: auto;
+    line-height: 1.6;
+  }
+
+  .benefits__cta-btn {
+    display: inline-block;
+    margin-top: var(--space-md);
+    background: var(--color-cta);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 0.9rem 2rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    transition: background 0.15s, transform 0.1s;
+  }
+
+  .benefits__cta-btn:hover {
+    background: var(--color-cta-dark);
+    transform: scale(1.02);
+  }
+
+  @media (max-width: 768px) {
+    .benefits__metrics {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

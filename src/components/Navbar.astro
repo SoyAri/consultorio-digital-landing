@@ -1,0 +1,217 @@
+---
+---
+<header class="navbar">
+  <div class="container navbar__inner">
+    <a href="/" class="navbar__logo" aria-label="Consultorio Digital — Inicio">
+      <!-- TODO: Reemplazar con logo SVG o <img> oficial -->
+      <span class="navbar__logo-mark" aria-hidden="true">🦷</span>
+      <span class="navbar__logo-text">Consultorio Digital</span>
+    </a>
+
+    <nav class="navbar__links" aria-label="Navegación principal">
+      <a href="#pain-points" class="navbar__link">El Problema</a>
+      <a href="#solution" class="navbar__link">La Solución</a>
+      <a href="#benefits" class="navbar__link">Beneficios</a>
+    </nav>
+
+    <button
+      class="navbar__cta"
+      onclick="window.$crisp && window.$crisp.push(['do', 'chat:open'])"
+      type="button"
+    >
+      Hablar con un asesor
+    </button>
+
+    <button
+      class="navbar__hamburger"
+      id="hamburger"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      type="button"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <div class="navbar__mobile" id="mobile-menu" hidden>
+    <nav aria-label="Menú móvil">
+      <a href="#pain-points" class="navbar__mobile-link">El Problema</a>
+      <a href="#solution" class="navbar__mobile-link">La Solución</a>
+      <a href="#benefits" class="navbar__mobile-link">Beneficios</a>
+    </nav>
+    <button
+      class="navbar__cta"
+      onclick="window.$crisp && window.$crisp.push(['do', 'chat:open'])"
+      type="button"
+    >
+      Hablar con un asesor
+    </button>
+  </div>
+</header>
+
+<div class="navbar__spacer" aria-hidden="true"></div>
+
+<script>
+  const hamburger = document.getElementById('hamburger') as HTMLButtonElement;
+  const mobileMenu = document.getElementById('mobile-menu') as HTMLDivElement;
+
+  hamburger?.addEventListener('click', () => {
+    const isOpen = !mobileMenu.hidden;
+    mobileMenu.hidden = isOpen;
+    hamburger.setAttribute('aria-expanded', String(!isOpen));
+    hamburger.setAttribute('aria-label', isOpen ? 'Abrir menú' : 'Cerrar menú');
+  });
+
+  mobileMenu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileMenu.hidden = true;
+      hamburger?.setAttribute('aria-expanded', 'false');
+      hamburger?.setAttribute('aria-label', 'Abrir menú');
+    });
+  });
+</script>
+
+<style>
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    height: var(--nav-height);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .navbar__inner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+  }
+
+  .navbar__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: 700;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .navbar__logo-mark {
+    font-size: 1.3rem;
+    line-height: 1;
+  }
+
+  .navbar__links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+  }
+
+  .navbar__link {
+    text-decoration: none;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.15s;
+  }
+
+  .navbar__link:hover {
+    color: var(--color-primary);
+  }
+
+  .navbar__cta {
+    background: var(--color-cta);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 0.55rem 1.2rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: var(--font-sans);
+    transition: background 0.15s;
+  }
+
+  .navbar__cta:hover {
+    background: var(--color-cta-dark);
+  }
+
+  .navbar__hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    width: 40px;
+    height: 40px;
+  }
+
+  .navbar__hamburger span {
+    display: block;
+    height: 2px;
+    background: var(--color-text);
+    border-radius: 2px;
+  }
+
+  .navbar__mobile {
+    position: absolute;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    background: white;
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    box-shadow: var(--shadow-md);
+  }
+
+  .navbar__mobile nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .navbar__mobile-link {
+    text-decoration: none;
+    color: var(--color-text);
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--color-border);
+    display: block;
+  }
+
+  .navbar__spacer {
+    height: var(--nav-height);
+  }
+
+  @media (max-width: 768px) {
+    .navbar__links {
+      display: none;
+    }
+
+    .navbar__cta {
+      display: none;
+    }
+
+    .navbar__hamburger {
+      display: flex;
+    }
+  }
+</style>

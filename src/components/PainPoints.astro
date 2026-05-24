@@ -1,0 +1,168 @@
+---
+---
+<section id="pain-points" class="pain-points">
+  <div class="container">
+
+    <p class="pain-points__eyebrow">¿Te suena familiar?</p>
+
+    <h1 class="pain-points__headline">
+      Tu clínica merece algo mejor que<br />
+      papel, WhatsApp y hojas de cálculo
+    </h1>
+
+    <p class="pain-points__subheadline">
+      <!-- TODO: Actualizar con dato real validado por el equipo -->
+      La mayoría de clínicas dentales pequeñas pierden entre 10 y 20 minutos por
+      paciente gestionando citas y expedientes de forma manual. Eso son horas de
+      tu día que podrías dedicar a lo que importa.
+    </p>
+
+    <div class="pain-points__cards">
+
+      <article class="pain-points__card">
+        <!-- TODO: Reemplazar emoji con ícono SVG -->
+        <div class="pain-points__card-icon" aria-hidden="true">📋</div>
+        <h2 class="pain-points__card-title">Agendas en papel y Excel</h2>
+        <p class="pain-points__card-body">
+          Citas duplicadas, letra ilegible de terceros y búsquedas interminables.
+          Cuando el cuaderno se pierde, la información del paciente desaparece contigo.
+        </p>
+      </article>
+
+      <article class="pain-points__card">
+        <!-- TODO: Reemplazar emoji con ícono SVG -->
+        <div class="pain-points__card-icon" aria-hidden="true">💬</div>
+        <h2 class="pain-points__card-title">Confirmaciones por WhatsApp</h2>
+        <p class="pain-points__card-body">
+          Mensajes sin respuesta, pacientes que no llegan y recordatorios manuales
+          que dependen de que tú o tu asistente no olviden enviarlos ese día.
+        </p>
+      </article>
+
+      <article class="pain-points__card">
+        <!-- TODO: Reemplazar emoji con ícono SVG -->
+        <div class="pain-points__card-icon" aria-hidden="true">📁</div>
+        <h2 class="pain-points__card-title">Expedientes fragmentados</h2>
+        <p class="pain-points__card-body">
+          Radiografías en el celular, notas clínicas en papel y presupuestos en
+          correos. Nadie tiene el cuadro completo del paciente a la mano cuando lo necesita.
+        </p>
+      </article>
+
+    </div>
+
+    <div class="pain-points__stat">
+      <span class="pain-points__stat-number">73%</span>
+      <span class="pain-points__stat-label">
+        <!-- TODO: Reemplazar con estadística validada por el equipo -->
+        de clínicas dentales pequeñas en Latinoamérica aún gestionan citas con
+        métodos manuales o mixtos
+      </span>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .pain-points {
+    background: var(--color-bg);
+    padding: var(--space-2xl) 0;
+  }
+
+  .pain-points__eyebrow {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin-bottom: var(--space-sm);
+  }
+
+  .pain-points__headline {
+    font-size: clamp(2rem, 4.5vw, 3.25rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--color-text);
+    margin-bottom: var(--space-md);
+    max-width: 22ch;
+  }
+
+  .pain-points__subheadline {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    max-width: 60ch;
+    margin-bottom: var(--space-xl);
+    line-height: 1.7;
+  }
+
+  .pain-points__cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+  }
+
+  .pain-points__card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .pain-points__card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .pain-points__card-icon {
+    font-size: 2.25rem;
+    margin-bottom: var(--space-sm);
+    line-height: 1;
+  }
+
+  .pain-points__card-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: var(--space-xs);
+  }
+
+  .pain-points__card-body {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+  }
+
+  .pain-points__stat {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    background: var(--color-primary);
+    color: white;
+    border-radius: var(--radius-md);
+    padding: var(--space-md) var(--space-lg);
+  }
+
+  .pain-points__stat-number {
+    font-size: 2.75rem;
+    font-weight: 800;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .pain-points__stat-label {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    opacity: 0.92;
+  }
+
+  @media (max-width: 480px) {
+    .pain-points__stat {
+      flex-direction: column;
+      text-align: center;
+      gap: var(--space-sm);
+    }
+  }
+</style>

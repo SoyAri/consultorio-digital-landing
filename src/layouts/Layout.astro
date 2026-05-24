@@ -1,23 +1,107 @@
+---
+import Navbar from '../components/Navbar.astro';
+import CrispChat from '../components/CrispChat.astro';
+
+// Agrega rutas aquí para activar el chat en más páginas
+const crispPages = ['/'];
+---
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Consultorio Digital — Software para Clínicas Dentales</title>
+    <meta name="description" content="Centraliza la agenda, expedientes y comunicación de tu clínica dental. Sin papel, sin WhatsApp, sin caos." />
+    <meta property="og:title" content="Consultorio Digital — Software para Clínicas Dentales" />
+    <meta property="og:description" content="Centraliza la agenda, expedientes y comunicación de tu clínica dental. Sin papel, sin WhatsApp, sin caos." />
+    <meta property="og:type" content="website" />
+    <slot name="head" />
+  </head>
+  <body>
+    <a href="#pain-points" class="skip-link">Ir al contenido principal</a>
+    <Navbar />
+    <slot />
+    <CrispChat pages={crispPages} />
+  </body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+<style is:global>
+  :root {
+    --color-primary: #1a6fbf;
+    --color-primary-dark: #155a9e;
+    --color-accent: #0fa3a3;
+    --color-cta: #16a34a;
+    --color-cta-dark: #15803d;
+    --color-bg: #f8fafc;
+    --color-surface: #ffffff;
+    --color-text: #1e293b;
+    --color-text-muted: #64748b;
+    --color-border: #e2e8f0;
+    --font-sans: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2.5rem;
+    --space-xl: 4rem;
+    --space-2xl: 6rem;
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+    --nav-height: 64px;
+    --max-width: 1120px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  .container {
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding-inline: var(--space-sm);
+  }
+
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: var(--space-sm);
+    background: var(--color-primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    z-index: 200;
+    font-weight: 600;
+    text-decoration: none;
+    transition: top 0.2s;
+  }
+
+  .skip-link:focus {
+    top: 0;
+  }
 </style>
