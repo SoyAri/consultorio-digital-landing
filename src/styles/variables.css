@@ -1,37 +1,38 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Average+Sans&family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 :root {
-  /* HSL Color System - Elite Palette */
+  /* HSL Color System - Cyber Medical / Aero Glass Palette (Blue & Orange) */
   --hue-primary: 212;   /* Royal Blue */
-  --hue-accent: 184;    /* Teal */
-  --hue-cta: 142;       /* Emerald */
+  --hue-accent: 195;    /* Sky Blue / Cyan */
+  --hue-cta: 24;        /* Energetic Orange (Replaces Green) */
   
-  --color-primary: hsl(var(--hue-primary), 85%, 48%);
-  --color-primary-hover: hsl(var(--hue-primary), 85%, 40%);
-  --color-primary-muted: hsl(var(--hue-primary), 20%, 65%);
-  --color-primary-light: hsl(var(--hue-primary), 85%, 96%);
+  /* Default Light Theme variables */
+  --color-primary: hsl(var(--hue-primary), 90%, 52%);
+  --color-primary-hover: hsl(var(--hue-primary), 90%, 44%);
+  --color-primary-muted: rgba(37, 99, 235, 0.15);
+  --color-primary-light: rgba(37, 99, 235, 0.05);
   
-  --color-accent: hsl(var(--hue-accent), 80%, 40%);
-  --color-accent-hover: hsl(var(--hue-accent), 80%, 32%);
-  --color-accent-light: hsl(var(--hue-accent), 80%, 96%);
+  --color-accent: hsl(var(--hue-accent), 90%, 44%);
+  --color-accent-hover: hsl(var(--hue-accent), 90%, 38%);
+  --color-accent-light: rgba(14, 116, 144, 0.05);
   
-  --color-cta: hsl(var(--hue-cta), 70%, 42%);
-  --color-cta-hover: hsl(var(--hue-cta), 70%, 34%);
-  --color-cta-light: hsl(var(--hue-cta), 70%, 96%);
+  --color-cta: hsl(var(--hue-cta), 95%, 50%);
+  --color-cta-hover: hsl(var(--hue-cta), 95%, 44%);
+  --color-cta-light: rgba(249, 115, 22, 0.1);
 
-  /* Neutrals */
-  --color-bg: hsl(210, 30%, 98%);
-  --color-surface: hsl(0, 0%, 100%);
-  --color-surface-glass: rgba(255, 255, 255, 0.75);
-  --color-surface-glass-dark: rgba(15, 23, 42, 0.08);
-  --color-text: hsl(222, 47%, 11%);
-  --color-text-muted: hsl(215, 16%, 47%);
-  --color-border: hsl(214, 32%, 91%);
-  --color-border-glow: rgba(26, 111, 191, 0.15);
+  /* Light Theme Aero Glass */
+  --color-bg: hsl(210, 40%, 97%);
+  --color-surface: rgba(255, 255, 255, 0.4);
+  --color-surface-glass: rgba(255, 255, 255, 0.4);
+  --color-surface-glass-dark: rgba(15, 23, 42, 0.03);
+  --color-text: hsl(222, 47%, 12%);
+  --color-text-muted: hsl(215, 20%, 38%);
+  --color-border: rgba(15, 23, 42, 0.08);
+  --color-border-glow: rgba(37, 99, 235, 0.12);
 
-  /* Typography */
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-title: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
+  /* Typography - Average Sans & Mulish */
+  --font-sans: 'Mulish', system-ui, -apple-system, sans-serif;
+  --font-title: 'Average Sans', 'Mulish', system-ui, -apple-system, sans-serif;
 
   /* Spacing */
   --space-xs: 0.5rem;
@@ -41,20 +42,52 @@
   --space-xl: 4.5rem;
   --space-2xl: 7.5rem;
 
-  /* Border Radius */
-  --radius-xs: 4px;
-  --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-full: 9999px;
+  /* Border Radius - ALMOST SHARP EDGES (Minimal 1-2px) */
+  --radius-xs: 0px;
+  --radius-sm: 1px;
+  --radius-md: 2px;
+  --radius-lg: 2px;
+  --radius-full: 4px;
 
-  /* Shadows */
+  /* Shadows - Light Aero Glass Shadows */
   --shadow-sm: 0 2px 8px -2px rgba(15, 23, 42, 0.05);
-  --shadow-md: 0 12px 24px -6px rgba(15, 23, 42, 0.08), 0 4px 12px -4px rgba(15, 23, 42, 0.04);
-  --shadow-lg: 0 24px 48px -12px rgba(15, 23, 42, 0.12), 0 8px 24px -8px rgba(15, 23, 42, 0.06);
-  --shadow-glow: 0 0 24px rgba(26, 111, 191, 0.25);
+  --shadow-md: 0 10px 30px -10px rgba(15, 23, 42, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  --shadow-lg: 0 20px 50px -15px rgba(15, 23, 42, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  --shadow-glow: 0 0 20px rgba(37, 99, 235, 0.15);
 
   /* Layout */
   --nav-height: 72px;
   --max-width: 1280px;
+}
+
+/* Dark Theme Overrides */
+[data-theme="dark"] {
+  --color-primary: hsl(var(--hue-primary), 90%, 58%);
+  --color-primary-hover: hsl(var(--hue-primary), 90%, 50%);
+  --color-primary-muted: rgba(56, 189, 248, 0.3);
+  --color-primary-light: rgba(56, 189, 248, 0.1);
+  
+  --color-accent: hsl(var(--hue-accent), 100%, 45%);
+  --color-accent-hover: hsl(var(--hue-accent), 100%, 38%);
+  --color-accent-light: rgba(6, 182, 212, 0.1);
+  
+  --color-cta: hsl(var(--hue-cta), 95%, 52%);
+  --color-cta-hover: hsl(var(--hue-cta), 95%, 44%);
+  --color-cta-light: rgba(249, 115, 22, 0.2);
+
+  /* Aero Glass Neutrals - Dark Cyber Medical Theme */
+  --color-bg: hsl(222, 47%, 3%);
+  --color-surface: rgba(15, 23, 42, 0.35);
+  --color-surface-glass: rgba(255, 255, 255, 0.04);
+  --color-surface-glass-dark: rgba(10, 15, 30, 0.7);
+  --color-text: hsl(210, 40%, 98%);
+  --color-text-muted: hsl(215, 20%, 75%);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-glow: rgba(56, 189, 248, 0.25);
+
+  /* Shadows - Tight Aero Shadows & Neon Glows */
+  --shadow-sm: 0 2px 8px -2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 10px 30px -10px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  --shadow-lg: 0 20px 50px -15px rgba(0, 0, 0, 0.9), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  --shadow-glow: 0 0 25px rgba(56, 189, 248, 0.35);
 }
