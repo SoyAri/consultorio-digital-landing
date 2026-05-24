@@ -2,58 +2,165 @@
 
 # 🦷 Consultorio Digital DWI — Landing Page
 
-### Landing page orientada a dentistas para presentar la plataforma SaaS de gestión clínica
+### Landing page de marketing dirigida a odontólogos y clínicas dentales pequeñas
 
-[![Astro](https://img.shields.io/badge/Framework-Astro-FF5D01?style=for-the-badge&logo=astro&logoColor=white)](https://astro.build/)
+[![Astro](https://img.shields.io/badge/Framework-Astro_6-FF5D01?style=for-the-badge&logo=astro&logoColor=white)](https://astro.build/)
 
-> Sitio web informativo dirigido a clínicas dentales, diseñado para presentar  
-> las funcionalidades y módulos del SaaS **Consultorio Digital DWI**.
+> Sitio de presentación del SaaS **Consultorio Digital DWI**. Su objetivo es convertir visitantes
+> (dentistas, secretarias, administradores de clínica) en leads a través del chat de Crisp.
 
 </div>
 
 ---
 
-## 🎯 Propósito
+## 🎯 Propósito y cliente objetivo
 
-Este repositorio contiene la **landing page** del producto SaaS **Consultorio Digital DWI**, cuyo objetivo es comunicar de forma clara el valor de la plataforma a dueños y personal de clínicas dentales.
+**¿A quién le hablamos?**
+Odontólogos y su personal auxiliar que operan clínicas privadas pequeñas. Rechazan el software complejo y gestionan sus citas con agendas, WhatsApp y hojas de cálculo. Necesitan una solución rápida, intuitiva y sin curva de aprendizaje.
 
-> ⚠️ Este proyecto es **independiente** del repositorio principal de la plataforma (`consultorio-digitaldwi`). Aquí solo vive el sitio de presentación.
+**¿Qué comunica esta landing?**
+La página no tiene rutas adicionales — todo es una sola página scrollable con 3 secciones que siguen la narrativa: *Problema → Solución → Beneficios*, y el chat de Crisp actúa como CTA.
 
 ---
 
-## 🚀 Stack Tecnológico
+## 🚀 Stack
 
 | Capa | Tecnología |
 |------|-----------|
-| **Framework** | [Astro](https://astro.build/) |
+| **Framework** | [Astro 6](https://astro.build/) |
+| **Estilos** | CSS vanilla con custom properties (sin frameworks) |
+| **Chat / CTA** | [Crisp Chat](https://crisp.chat/) |
+
+> Sin frameworks de UI (no React, no Tailwind). Solo Astro y CSS puro. Las librerías se agregarán solo cuando sean estrictamente necesarias.
 
 ---
 
-## 📄 Contenido de la Landing
+## 📁 Estructura del proyecto
 
-La página está estructurada para presentar el producto a potenciales clientes (dentistas y clínicas). Las secciones corresponden directamente a los módulos del SaaS:
+```
+src/
+├── layouts/
+│   └── Layout.astro          ← Shell HTML global: lang, meta SEO, tokens CSS, Navbar, CrispChat
+├── pages/
+│   └── index.astro           ← Única página — importa y organiza las 3 secciones
+└── components/
+    ├── Navbar.astro           ← Navbar fija con smooth scroll y hamburger móvil
+    ├── CrispChat.astro        ← Script de Crisp, condicional por ruta
+    ├── PainPoints.astro       ← Sección 1: El Problema
+    ├── Solution.astro         ← Sección 2: La Solución
+    └── Benefits.astro         ← Sección 3: Beneficios + CTA final
+```
 
-### Secciones incluidas
+### Tokens de diseño (CSS custom properties en `Layout.astro`)
 
-- **Hero / Presentación** — Introducción general al producto y propuesta de valor.
-- **Características del sistema** — Descripción de los módulos disponibles:
-  - 👤 Portal de Pacientes
-  - 🗂️ Módulo Administrativo (Secretaría)
-  - 🩺 Módulo Médico (Doctores)
-- **Control de acceso por roles** — Explicación del sistema de permisos diferenciados por tipo de usuario.
-- **Call to Action** — Punto de contacto o acceso al sistema principal.
+Todas las secciones comparten las mismas variables. **No dupliques valores de color, spacing o tipografía — usa los tokens.**
+
+| Token | Uso |
+|-------|-----|
+| `--color-primary` | Azul médico (`#1a6fbf`) — headings, énfasis, badges |
+| `--color-accent` | Teal (`#0fa3a3`) — eyebrows, checkmarks secundarios |
+| `--color-cta` | Verde (`#16a34a`) — todos los botones de acción |
+| `--color-bg` | Gris muy claro (`#f8fafc`) — fondo de secciones impares |
+| `--color-surface` | Blanco (`#ffffff`) — fondo de secciones pares |
+| `--color-text-muted` | Gris medio (`#64748b`) — subtítulos, descripciones |
 
 ---
 
-## ⚙️ Entorno de Desarrollo
+## 🗺️ Secciones y responsables
+
+| Sección | Componente | Rama | Anclaje |
+|---------|-----------|------|---------|
+| Navbar global | `Navbar.astro` | `feat/navbar-global` | — |
+| El Problema | `PainPoints.astro` | `feat/pain-points` | `#pain-points` |
+| La Solución | `Solution.astro` | `feat/solution` | `#solution` |
+| Beneficios + CTA | `Benefits.astro` | `feat/benefits` | `#benefits` |
+| Crisp Chat | `CrispChat.astro` | `feat/crisp-chat` | — |
+
+### Patrón de CTA (obligatorio en toda la landing)
+
+Todos los botones de acción abren el chat de Crisp — **nunca** enlaces a formularios externos ni rutas nuevas:
+
+```html
+<button
+  onclick="window.$crisp && window.$crisp.push(['do', 'chat:open'])"
+  type="button"
+>
+  Texto del botón
+</button>
+```
+
+### Activar Crisp en más páginas
+
+En `Layout.astro`, modifica el array `crispPages`. Por defecto solo aparece en `/`:
+
+```js
+const crispPages = ['/'];        // solo landing
+const crispPages = ['/', '/login']; // landing + login (ejemplo)
+```
+
+---
+
+## 🌿 Flujo de trabajo (GitHub Flow)
+
+**Regla de oro: nunca push directo a `main`. Todo entra por Pull Request.**
+
+```bash
+# 1. Asegúrate de tener main actualizado
+git checkout main
+git pull origin main
+
+# 2. Trabaja en tu rama (ya creadas, solo jalás la tuya)
+git checkout feat/pain-points   # o la que te corresponde
+
+# 3. Commitea con mensajes descriptivos
+git add src/components/PainPoints.astro
+git commit -m "feat(pain-points): agrega copy final y reemplaza stat por dato real"
+
+# 4. Sube tu rama
+git push origin feat/pain-points
+
+# 5. Abre PR hacia main en GitHub
+```
+
+### Ramas existentes
+
+| Rama | Tarea principal |
+|------|----------------|
+| `feat/navbar-global` | Afinar logo, links y comportamiento del navbar |
+| `feat/crisp-chat` | El script ya está; rama lista si se necesita ajustar |
+| `feat/pain-points` | Reemplazar copy y stat de placeholder por contenido real |
+| `feat/solution` | Reemplazar mockups de color por screenshots reales del producto |
+| `feat/benefits` | Reemplazar métricas de placeholder por datos reales |
+
+---
+
+## ✅ TODOs marcados en el código
+
+Busca `// TODO:` en cualquier componente para ver exactamente qué falta afinar:
+
+```bash
+grep -r "TODO" src/components/
+```
+
+Ejemplos de lo que encontrarás:
+- Reemplazar emojis con íconos SVG oficiales
+- Reemplazar datos de placeholder (73%, -60%, 15 min) con métricas reales
+- Reemplazar mockups de gradiente con screenshots del producto terminado
+- Agregar logo oficial en `Navbar.astro`
+- Agregar enlace a demo/video en `Benefits.astro` cuando esté disponible
+
+---
+
+## ⚙️ Entorno de desarrollo
 
 **1. Clona el repositorio:**
 
 ```bash
 git clone https://github.com/SoyAri/consultorio-digital-landing
+cd consultorio-digital-landing
 ```
 
-**2. Instala las dependencias:**
+**2. Instala dependencias:**
 
 ```bash
 npm install
@@ -65,26 +172,24 @@ npm install
 npm run dev
 ```
 
-Una vez en ejecución, abre tu navegador en `http://localhost:4321/`.
+Navega a `http://localhost:4321/`.
+
+> Si el servidor estaba corriendo mientras se modificaban archivos y ves errores de importación, reinícialo con `Ctrl+C` → `npm run dev`. Es un artefacto del hot-reload.
 
 ---
 
-## 🛠️ Comandos disponibles
+## 🛠️ Comandos
 
 | Comando | Descripción |
 |---------|-------------|
-| `npm run dev` | Inicia el servidor de desarrollo en `localhost:4321` |
-| `npm run build` | Genera el sitio estático en la carpeta `dist/` |
----
+| `npm run dev` | Servidor de desarrollo en `localhost:4321` |
+| `npm run build` | Build de producción en `dist/` |
+| `npm run preview` | Vista previa del build de producción |
 
 ---
 
-## 🔗 Recursos relacionados
+## 🔗 Recursos
 
 - [Repositorio principal del SaaS](https://github.com/SoyAri/consultorio-digitaldwi)
 - [Documentación de Astro](https://docs.astro.build/)
-- [Astro CLI Reference](https://docs.astro.build/en/reference/cli-reference/)
-
----
-
-> 🛠️ Proyecto en **fase inicial de desarrollo**. Las secciones y dependencias irán creciendo conforme avance el diseño de la landing.
+- [Crisp Chat Dashboard](https://app.crisp.chat/)
