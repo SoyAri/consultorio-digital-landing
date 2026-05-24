@@ -3,20 +3,70 @@
 <section id="pain-points" class="pain-points">
   <div class="container">
 
-    <p class="pain-points__eyebrow">¿Te suena familiar?</p>
+    <!-- Hero: 2 columnas -->
+    <div class="pain-points__hero">
 
-    <h1 class="pain-points__headline">
-      Tu clínica merece algo mejor que<br />
-      papel, WhatsApp y hojas de cálculo
-    </h1>
+      <!-- Columna izquierda: texto principal -->
+      <div class="pain-points__hero-text">
+        <p class="pain-points__eyebrow">¿Te suena familiar?</p>
+        <h1 class="pain-points__headline">
+          Tu clínica merece algo mejor que papel, WhatsApp y hojas de cálculo
+        </h1>
+        <p class="pain-points__subheadline">
+          <!-- TODO: Actualizar con dato real validado por el equipo -->
+          La mayoría de clínicas dentales pequeñas pierden entre 10 y 20 minutos
+          por paciente gestionando citas y expedientes de forma manual.
+        </p>
+        <button
+          class="pain-points__cta"
+          onclick="window.$crisp && window.$crisp.push(['do', 'chat:open'])"
+          type="button"
+        >
+          Hablar con un asesor →
+        </button>
+      </div>
 
-    <p class="pain-points__subheadline">
-      <!-- TODO: Actualizar con dato real validado por el equipo -->
-      La mayoría de clínicas dentales pequeñas pierden entre 10 y 20 minutos por
-      paciente gestionando citas y expedientes de forma manual. Eso son horas de
-      tu día que podrías dedicar a lo que importa.
-    </p>
+      <!-- Columna derecha: visual de impacto -->
+      <div class="pain-points__hero-visual">
+        <div class="pain-points__impact-card">
+          <p class="pain-points__impact-label">Sin Consultorio Digital, cada semana:</p>
+          <ul class="pain-points__impact-list">
+            <li>
+              <span class="impact-icon" aria-hidden="true">⏱️</span>
+              <span>
+                <strong>10–20 min perdidos</strong> por paciente buscando expedientes
+              </span>
+            </li>
+            <li>
+              <span class="impact-icon" aria-hidden="true">💬</span>
+              <span>
+                <strong>Recordatorios manuales</strong> por WhatsApp que dependen de que alguien no olvide enviarlos
+              </span>
+            </li>
+            <li>
+              <span class="impact-icon" aria-hidden="true">📋</span>
+              <span>
+                <strong>Citas duplicadas</strong> por manejo en papel o Excel sin sincronización
+              </span>
+            </li>
+            <li>
+              <span class="impact-icon" aria-hidden="true">📁</span>
+              <span>
+                <strong>Expedientes dispersos</strong> entre papel, celular y correos sin orden
+              </span>
+            </li>
+          </ul>
+          <!-- TODO: Reemplazar con dato real validado -->
+          <div class="pain-points__impact-stat">
+            <span class="stat-number">73%</span>
+            <span class="stat-text">de clínicas pequeñas aún usan métodos manuales</span>
+          </div>
+        </div>
+      </div>
 
+    </div>
+
+    <!-- Cards de pain points -->
     <div class="pain-points__cards">
 
       <article class="pain-points__card">
@@ -50,23 +100,23 @@
       </article>
 
     </div>
-
-    <div class="pain-points__stat">
-      <span class="pain-points__stat-number">73%</span>
-      <span class="pain-points__stat-label">
-        <!-- TODO: Reemplazar con estadística validada por el equipo -->
-        de clínicas dentales pequeñas en Latinoamérica aún gestionan citas con
-        métodos manuales o mixtos
-      </span>
-    </div>
-
   </div>
 </section>
 
 <style>
   .pain-points {
     background: var(--color-bg);
-    padding: var(--space-2xl) 0;
+    padding: 0 0 var(--space-2xl);
+  }
+
+  /* Hero 2 columnas */
+  .pain-points__hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+    min-height: calc(90vh - var(--nav-height));
+    padding: var(--space-xl) 0;
   }
 
   .pain-points__eyebrow {
@@ -79,27 +129,112 @@
   }
 
   .pain-points__headline {
-    font-size: clamp(2rem, 4.5vw, 3.25rem);
+    font-size: clamp(2rem, 3.5vw, 3.25rem);
     font-weight: 800;
     line-height: 1.15;
     color: var(--color-text);
     margin-bottom: var(--space-md);
-    max-width: 22ch;
   }
 
   .pain-points__subheadline {
     font-size: 1.1rem;
     color: var(--color-text-muted);
-    max-width: 60ch;
-    margin-bottom: var(--space-xl);
     line-height: 1.7;
+    margin-bottom: var(--space-lg);
   }
 
+  .pain-points__cta {
+    background: var(--color-cta);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 0.85rem 2rem;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    transition: background 0.15s, transform 0.1s;
+  }
+
+  .pain-points__cta:hover {
+    background: var(--color-cta-dark);
+    transform: translateY(-1px);
+  }
+
+  /* Tarjeta visual derecha */
+  .pain-points__impact-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-md);
+  }
+
+  .pain-points__impact-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-md);
+  }
+
+  .pain-points__impact-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+  }
+
+  .pain-points__impact-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    font-size: 0.925rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+
+  .impact-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .pain-points__impact-list strong {
+    color: var(--color-text);
+    font-weight: 700;
+  }
+
+  .pain-points__impact-stat {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    background: var(--color-primary);
+    color: white;
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .stat-number {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .stat-text {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    opacity: 0.92;
+  }
+
+  /* Cards */
   .pain-points__cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--space-md);
-    margin-bottom: var(--space-xl);
   }
 
   .pain-points__card {
@@ -117,7 +252,7 @@
   }
 
   .pain-points__card-icon {
-    font-size: 2.25rem;
+    font-size: 2rem;
     margin-bottom: var(--space-sm);
     line-height: 1;
   }
@@ -135,34 +270,15 @@
     line-height: 1.65;
   }
 
-  .pain-points__stat {
-    display: flex;
-    align-items: center;
-    gap: var(--space-md);
-    background: var(--color-primary);
-    color: white;
-    border-radius: var(--radius-md);
-    padding: var(--space-md) var(--space-lg);
-  }
+  @media (max-width: 900px) {
+    .pain-points__hero {
+      grid-template-columns: 1fr;
+      min-height: auto;
+      padding: var(--space-xl) 0 var(--space-md);
+    }
 
-  .pain-points__stat-number {
-    font-size: 2.75rem;
-    font-weight: 800;
-    line-height: 1;
-    flex-shrink: 0;
-  }
-
-  .pain-points__stat-label {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    opacity: 0.92;
-  }
-
-  @media (max-width: 480px) {
-    .pain-points__stat {
-      flex-direction: column;
-      text-align: center;
-      gap: var(--space-sm);
+    .pain-points__cards {
+      grid-template-columns: 1fr;
     }
   }
 </style>
