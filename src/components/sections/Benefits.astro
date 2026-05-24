@@ -2,9 +2,17 @@
 import { siteConfig } from '../../config/site';
 import StatCard from '../ui/StatCard.astro';
 import Button from '../ui/Button.astro';
+import { Stethoscope, CalendarCheck, ShieldCheck, UserRound } from 'lucide-astro';
 
 const { benefits } = siteConfig;
-const { roles } = benefits.rolesSection;
+const roles = benefits.rolesSection.roles.filter(role => role.name !== "Administrador");
+
+const RoleIconMap: Record<string, any> = {
+  stethoscope: Stethoscope,
+  'calendar-check': CalendarCheck,
+  'shield-check': ShieldCheck,
+  'user-round': UserRound,
+};
 
 // Colores del diseño anterior para los roles
 const roleColors = [
@@ -55,14 +63,16 @@ const roleColors = [
 
       <div class="benefits-grid">
         {
-          roles.map((role, index) => (
-            <div 
-              class="benefit-card js-card" 
+          roles.map((role, index) => {
+            const RoleIcon = RoleIconMap[role.icon];
+            return (
+            <div
+              class="benefit-card js-card"
               style={`--accent: ${roleColors[index].accent}; --bg-soft: ${roleColors[index].bgSoft}; --stagger: ${index}`}
             >
               <div class="card-num">0{index + 1}</div>
               <div class="icon-wrapper">
-                <span class="role-emoji">{role.icon}</span>
+                {RoleIcon && <RoleIcon size={24} />}
               </div>
               <h4 class="card-title">{role.name}</h4>
               <ul class="role-list">
@@ -75,7 +85,8 @@ const roleColors = [
               </ul>
               <div class="card-indicator"></div>
             </div>
-          ))
+            );
+          })
         }
       </div>
     </div>
@@ -109,20 +120,29 @@ const roleColors = [
 <style>
   .benefits {
     padding: var(--space-2xl) 0;
-    background-color: var(--color-bg);
+    background:
+      radial-gradient(ellipse at 92% 15%, rgba(37, 99, 235, 0.05) 0%, transparent 50%),
+      radial-gradient(ellipse at 8% 85%, rgba(14, 116, 144, 0.04) 0%, transparent 50%),
+      var(--color-bg);
     position: relative;
     overflow: hidden;
     color: var(--color-text);
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 
+  /* Content sits above decorative images */
+  .benefits > .container {
+    position: relative;
+    z-index: 2;
+  }
+
   /* Imágenes decorativas */
   .tooth-image-container {
     position: absolute;
-    top: 5%;
-    right: -5%;
-    width: 320px;
-    opacity: 0.08;
+    top: 2%;
+    right: -4%;
+    width: 380px;
+    opacity: 0.07;
     z-index: 0;
     pointer-events: none;
     transform: rotate(15deg);
@@ -130,15 +150,15 @@ const roleColors = [
   }
 
   [data-theme="dark"] .tooth-image-container {
-    opacity: 0.12;
+    opacity: 0.11;
   }
 
   .compu-image-container {
     position: absolute;
-    bottom: 5%;
+    bottom: 2%;
     left: -5%;
-    width: 320px;
-    opacity: 0.08;
+    width: 360px;
+    opacity: 0.07;
     z-index: 0;
     pointer-events: none;
     transform: rotate(-15deg);
@@ -146,7 +166,7 @@ const roleColors = [
   }
 
   [data-theme="dark"] .compu-image-container {
-    opacity: 0.12;
+    opacity: 0.11;
   }
 
   .tooth-img, .compu-img {
@@ -161,16 +181,34 @@ const roleColors = [
   }
 
   .benefits__tag {
-    display: inline-block;
-    padding: 0.5rem 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.4rem 1rem 0.4rem 0.7rem;
     background: var(--color-primary-light);
-    color: var(--color-primary);
+    border: 1px solid var(--color-primary-muted);
     border-radius: var(--radius-full);
-    font-size: 0.85rem;
+    font-size: 0.72rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: var(--space-sm);
+    letter-spacing: 0.12em;
+    color: var(--color-primary);
+    margin-bottom: var(--space-md);
+  }
+
+  .benefits__tag::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    flex-shrink: 0;
+    animation: eyebrow-pulse 2.2s ease-in-out infinite;
+  }
+
+  @keyframes eyebrow-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.4; transform: scale(0.75); }
   }
 
   .benefits__title {
@@ -229,7 +267,7 @@ const roleColors = [
   /* Grid de Beneficios */
   .benefits-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     margin: 0 auto var(--space-2xl);
   }
@@ -291,10 +329,6 @@ const roleColors = [
     transition: all 0.6s ease;
   }
 
-  .role-emoji {
-    font-size: 24px;
-  }
-
   .card-title {
     font-size: 1.25rem;
     font-weight: 700;
@@ -328,18 +362,44 @@ const roleColors = [
 
   .card-num {
     position: absolute;
-    top: 20px; right: 20px;
-    font-size: 28px;
+    top: 16px; right: 18px;
+    font-size: 22px;
     font-weight: 800;
-    color: var(--color-text);
-    opacity: 0.05;
+    color: var(--accent);
+    opacity: 0.18;
     line-height: 1;
     font-family: var(--font-title);
-    transition: opacity 0.3s ease;
+    letter-spacing: -0.02em;
+    transition: opacity 0.4s ease, color 0.4s ease;
   }
 
+  .benefit-card:hover .card-num,
   .benefit-card.is-active-carousel .card-num {
-    opacity: 0.1;
+    opacity: 0.55;
+  }
+
+  /* Hover state — mirrors is-active-carousel */
+  .benefit-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent);
+    box-shadow: var(--shadow-lg), 0 0 0 1px var(--accent);
+  }
+
+  [data-theme="dark"] .benefit-card:hover {
+    background: rgba(255, 255, 255, 0.03);
+    box-shadow: 0 0 32px color-mix(in srgb, var(--accent) 20%, transparent);
+    border-color: var(--accent);
+  }
+
+  .benefit-card:hover .card-indicator {
+    width: 100%;
+  }
+
+  .benefit-card:hover .icon-wrapper {
+    background: var(--accent);
+    color: white;
+    transform: scale(1.1) rotate(4deg);
+    box-shadow: 0 8px 20px -4px color-mix(in srgb, var(--accent) 40%, transparent);
   }
 
   /* Modern CTA Block - Integración mejorada */
@@ -348,7 +408,7 @@ const roleColors = [
   }
 
   .modern-cta {
-    background: var(--color-surface);
+    background: var(--color-bg);
     border-radius: var(--radius-lg);
     padding: var(--space-xl);
     position: relative;
@@ -360,7 +420,7 @@ const roleColors = [
   }
 
   [data-theme="dark"] .modern-cta {
-    background: rgba(255, 255, 255, 0.02);
+    background: hsl(222, 47%, 5%);
     border-color: rgba(255, 255, 255, 0.1);
   }
 

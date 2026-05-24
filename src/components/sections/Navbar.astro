@@ -122,17 +122,48 @@ import { Stethoscope, Sun, Moon } from 'lucide-astro';
     right: 0;
     z-index: 100;
     height: var(--nav-height);
-    border-bottom: 1px solid var(--color-border);
     display: flex;
     align-items: center;
-
-    background: rgba(255, 255, 255, 0.96);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    /* Override the heavy .glass box-shadow */
+    box-shadow: none;
+    border: none;
   }
 
-    :global([data-theme="dark"]) .navbar {
-    background: rgba(10, 15, 30, 0.96);
+  /* Línea inferior elegante en lugar de border/sombra */
+  .navbar::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--color-primary) 25%,
+      var(--color-accent) 60%,
+      transparent 100%
+    );
+    opacity: 0.45;
+    transition: opacity 0.3s ease;
+  }
+
+  :global([data-theme="dark"]) .navbar {
+    background: rgba(8, 12, 26, 0.92);
+  }
+
+  :global([data-theme="dark"]) .navbar::after {
+    opacity: 0.7;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--color-primary) 25%,
+      var(--color-accent) 55%,
+      transparent 100%
+    );
   }
 
   .navbar__inner {

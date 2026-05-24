@@ -14,6 +14,9 @@ const IconMap = {
 ---
 
 <section id="solution" class="solution">
+  <div class="solution__deco solution__deco--compu" aria-hidden="true">
+    <img src="/images/Compu.webp" alt="" />
+  </div>
   <div class="container">
     <p class="solution__eyebrow">{solution.eyebrow}</p>
     <h2 class="solution__headline">{solution.headline}</h2>
@@ -71,82 +74,92 @@ const IconMap = {
           <div class="simulator__view transition-screen screen-visible" id="screen-01">
             <div class="agenda-view">
               <div class="agenda-view__header">
-                <h4 class="agenda-view__title">Calendario de Sillones</h4>
-                <button class="agenda-view__btn btn-mini" type="button">
-                  <Plus size={14} /> Nueva Cita
-                </button>
+                <h4 class="agenda-view__title">Agenda de Citas</h4>
+                <div class="agenda-view__header-actions">
+                  <span class="agenda-view__date">Hoy, 24 May</span>
+                  <button class="btn-mini" type="button">
+                    <Plus size={14} /> Nueva Cita
+                  </button>
+                </div>
               </div>
-              <div class="agenda-view__grid">
-                <div class="agenda-view__col">
-                  <span class="col-title">Sillón A - Principal</span>
-                  <div class="agenda-card primary">
-                    <span class="agenda-time">09:00 AM</span>
-                    <span class="agenda-patient">Roberto Martínez</span>
-                    <span class="agenda-treat">Limpieza Ultra</span>
+              <div class="agenda-view__layout">
+                <!-- Mini widgets a la izquierda -->
+                <div class="agenda-view__widgets">
+                  <div class="widget-card">
+                    <span class="widget-label">En curso</span>
+                    <span class="widget-value text-primary">Mariana Gómez</span>
+                    <span class="widget-desc">Limpieza dental • 30m</span>
                   </div>
-                  <div class="agenda-card secondary">
-                    <span class="agenda-time">11:00 AM</span>
-                    <span class="agenda-patient">Diana Flores</span>
-                    <span class="agenda-treat">Ortodoncia Control</span>
-                  </div>
-                </div>
-                <div class="agenda-view__col">
-                  <span class="col-title">Sillón B - Cirugía</span>
-                  <div class="agenda-card warning">
-                    <span class="agenda-time">10:00 AM</span>
-                    <span class="agenda-patient">Luis Valencia</span>
-                    <span class="agenda-treat">Implante Dental</span>
-                  </div>
-                  <div class="agenda-card empty">
-                    <span class="agenda-empty-text">Horario Disponible</span>
+                  <div class="widget-card mt-2">
+                    <span class="widget-label">Próximo</span>
+                    <span class="widget-value">Carlos Ruiz</span>
+                    <span class="widget-desc">Resina simple • a las 11:00</span>
                   </div>
                 </div>
-                <div class="agenda-view__col">
-                  <span class="col-title">Sillón C - Estética</span>
-                  <div class="agenda-card success">
-                    <span class="agenda-time">09:30 AM</span>
-                    <span class="agenda-patient">Sofía Castro</span>
-                    <span class="agenda-treat">Blanqueamiento</span>
-                  </div>
-                  <div class="agenda-card primary">
-                    <span class="agenda-time">12:00 PM</span>
-                    <span class="agenda-patient">Alejandro Ruiz</span>
-                    <span class="agenda-treat">Resina</span>
+                <!-- Mini calendario/lista de horas a la derecha -->
+                <div class="agenda-view__calendar">
+                  <div class="agenda-timeline">
+                    <div class="timeline-row">
+                      <span class="time-label">09:00</span>
+                      <div class="timeline-event success">Dra. Ana: Ortodoncia (Terminada)</div>
+                    </div>
+                    <div class="timeline-row">
+                      <span class="time-label">10:00</span>
+                      <div class="timeline-event primary">Limpieza con Mariana</div>
+                    </div>
+                    <div class="timeline-row mt-2">
+                      <span class="time-label">11:00</span>
+                      <div class="timeline-event secondary">Resina (Carlos Ruiz)</div>
+                    </div>
+                    <div class="timeline-row">
+                      <span class="time-label">12:00</span>
+                      <div class="timeline-event empty">Disponible</div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- SCREEN 2: Odontograma -->
+          <!-- SCREEN 2: Expediente de paciente (Reemplaza Odontograma) -->
           <div class="simulator__view transition-screen screen-hidden" id="screen-02">
-            <div class="odontograma-view">
-              <div class="odontograma-header">
-                <h4 class="odontograma-title">Odontograma Interactivo (Arcada Superior)</h4>
-                <span class="odontograma-subtitle">Toca una pieza para diagnosticar</span>
+            <div class="patient-profile-view">
+              <div class="profile-header glass">
+                <div class="profile-avatar">
+                  <User size={32} class="text-primary" />
+                </div>
+                <div class="profile-info">
+                  <h4 class="profile-name">Laura Torres</h4>
+                  <span class="profile-meta">Expediente #4092 • 28 años</span>
+                </div>
+                <div class="profile-actions">
+                  <button class="btn-mini outline">Editar</button>
+                </div>
               </div>
-              <div class="teeth-row">
-                {
-                  [18, 17, 16, 15, 14, 13, 12, 11, 21, 22, 23, 24, 25, 26, 27, 28].map((num) => (
-                    <div class={`tooth-block ${num === 16 ? 'decayed' : ''} ${num === 24 ? 'treated' : ''}`} data-tooth={num}>
-                      <span class="tooth-num">{num}</span>
-                      <span class="tooth-shape"></span>
-                    </div>
-                  ))
-                }
+              
+              <div class="profile-tabs mt-4">
+                <span class="tab active">Historial Clínico</span>
+                <span class="tab">Odontograma</span>
+                <span class="tab">Archivos</span>
               </div>
-              <div class="odontograma-details glass">
-                <h5 class="detail-title">Historial Diagnóstico: Pieza 16</h5>
-                <ul class="detail-list">
-                  <li>
-                    <span class="badge red">Caries Profunda</span>
-                    <span class="detail-desc">Tratamiento sugerido: Resina compuesta.</span>
-                  </li>
-                  <li>
-                    <span class="badge green">Limpieza Completa</span>
-                    <span class="detail-desc">Realizada con éxito el mes pasado.</span>
-                  </li>
-                </ul>
+
+              <div class="profile-history mt-4">
+                <div class="history-card">
+                  <div class="history-date">10 May 2026</div>
+                  <div class="history-content">
+                    <h5>Consulta de Valoración</h5>
+                    <p class="text-muted text-sm mt-1">Dolor leve en pieza 24. Se recomienda toma de radiografía periapical e iniciar tratamiento de endodoncia.</p>
+                    <span class="badge blue mt-2">Dr. García</span>
+                  </div>
+                </div>
+                <div class="history-card mt-3">
+                  <div class="history-date">02 Abr 2026</div>
+                  <div class="history-content">
+                    <h5>Limpieza y Profilaxis</h5>
+                    <p class="text-muted text-sm mt-1">Procedimiento de rutina. Presencia de sarro leve en arcada inferior.</p>
+                    <span class="badge green mt-2">Dra. López</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -201,32 +214,43 @@ const IconMap = {
             </div>
           </div>
 
-          <!-- SCREEN 4: Recordatorios -->
+          <!-- SCREEN 4: Recordatorios WhatsApp -->
           <div class="simulator__view transition-screen screen-hidden" id="screen-04">
             <div class="whatsapp-view">
-              <div class="chat-header">
-                <div class="chat-avatar">CD</div>
-                <div class="chat-user-info">
-                  <span class="chat-username">Consultorio Dental</span>
-                  <span class="chat-status">Recordatorios Automáticos</span>
+              <div class="wa-header">
+                <div class="wa-avatar">
+                  <img src="/images/diente.webp" alt="Bot" width="30" />
+                </div>
+                <div class="wa-info">
+                  <span class="wa-name">Bot Consultorio</span>
+                  <span class="wa-status">Cuenta de empresa</span>
                 </div>
               </div>
-              <div class="chat-messages">
-                <div class="chat-bubble received">
-                  <p>Hola Juan, te recordamos tu cita dental programada para mañana a las 10:00 AM. ¿Confirmas tu asistencia? Responde 1 para Confirmar o 2 para Cancelar.</p>
-                  <span class="chat-time">9:00 AM</span>
+              
+              <div class="wa-chat">
+                <div class="wa-date">Hoy</div>
+                <div class="wa-bbl received">
+                  Hola Juan, te recordamos tu cita dental para mañana a las 10:00 AM con la Dra. Ana.
+                  <br/><br/>
+                  Por favor, contesta con el número de tu opción:
+                  <br/>1️⃣ Confirmar
+                  <br/>2️⃣ Cancelar
+                  <div class="wa-time">14:30</div>
                 </div>
-                <div class="chat-bubble sent">
-                  <p>1</p>
-                  <span class="chat-time">9:02 AM</span>
+                
+                <div class="wa-bbl sent text-right">
+                  1
+                  <div class="wa-time">14:35 <Check size={12} class="inline ml-1" /></div>
                 </div>
-                <div class="chat-bubble received">
-                  <p>¡Gracias Juan! Tu cita ha sido confirmada automáticamente. Te esperamos en Av. Reforma 402. ¡Buen día!</p>
-                  <span class="chat-time">9:02 AM</span>
+                
+                <div class="wa-bbl received">
+                  ¡Excelente! Tu cita quedó confirmada en nuestra agenda. Te esperamos. 😊
+                  <div class="wa-time">14:35</div>
                 </div>
               </div>
-              <div class="chat-footer">
-                <span class="chat-input-placeholder">Solo respuestas automatizadas habilitadas</span>
+              
+              <div class="wa-input">
+                <span class="text-xs text-muted">Escribe un mensaje...</span>
               </div>
             </div>
           </div>
@@ -295,65 +319,119 @@ const IconMap = {
     });
 
     // Simple tooth selection interactive mockup
-    teeth.forEach((tooth) => {
-      tooth.addEventListener('click', () => {
-        teeth.forEach((t) => t.classList.remove('is-selected'));
-        tooth.classList.add('is-selected');
+    // teeth.forEach((tooth) => {
+    //   tooth.addEventListener('click', () => {
+    //     teeth.forEach((t) => t.classList.remove('is-selected'));
+    //     tooth.classList.add('is-selected');
 
-        const toothNum = tooth.getAttribute('data-tooth');
-        const detailsContainer = document.querySelector('.odontograma-details');
-        const title = detailsContainer.querySelector('.detail-title');
-        const list = detailsContainer.querySelector('.detail-list');
+    //     const toothNum = tooth.getAttribute('data-tooth');
+    //     const detailsContainer = document.querySelector('.odontograma-details');
+    //     const title = detailsContainer.querySelector('.detail-title');
+    //     const list = detailsContainer.querySelector('.detail-list');
 
-        title.textContent = `Historial Diagnóstico: Pieza ${toothNum}`;
+    //     title.textContent = `Historial Diagnóstico: Pieza ${toothNum}`;
 
-        if (toothNum === '16') {
-          list.innerHTML = `
-            <li>
-              <span class="badge red">Caries Profunda</span>
-              <span class="detail-desc">Tratamiento sugerido: Resina compuesta.</span>
-            </li>
-            <li>
-              <span class="badge green">Limpieza Completa</span>
-              <span class="detail-desc">Realizada con éxito el mes pasado.</span>
-            </li>
-          `;
-        } else if (toothNum === '24') {
-          list.innerHTML = `
-            <li>
-              <span class="badge blue">Endodoncia terminada</span>
-              <span class="detail-desc">Corona de porcelana cementada con éxito.</span>
-            </li>
-          `;
-        } else {
-          list.innerHTML = `
-            <li>
-              <span class="badge green">Pieza Sana</span>
-              <span class="detail-desc">No presenta caries ni sarro visible.</span>
-            </li>
-          `;
-        }
-      });
-    });
+    //     if (toothNum === '16') {
+    //       list.innerHTML = `
+    //         <li>
+    //           <span class="badge red">Caries Profunda</span>
+    //           <span class="detail-desc">Tratamiento sugerido: Resina compuesta.</span>
+    //         </li>
+    //         <li>
+    //           <span class="badge green">Limpieza Completa</span>
+    //           <span class="detail-desc">Realizada con éxito el mes pasado.</span>
+    //         </li>
+    //       `;
+    //     } else if (toothNum === '24') {
+    //       list.innerHTML = `
+    //         <li>
+    //           <span class="badge blue">Endodoncia terminada</span>
+    //           <span class="detail-desc">Corona de porcelana cementada con éxito.</span>
+    //         </li>
+    //       `;
+    //     } else {
+    //       list.innerHTML = `
+    //         <li>
+    //           <span class="badge green">Pieza Sana</span>
+    //           <span class="detail-desc">No presenta caries ni sarro visible.</span>
+    //         </li>
+    //       `;
+    //     }
+    //   });
+    // });
   })();
 </script>
 
 <style>
   .solution {
-    background: transparent;
+    background:
+      radial-gradient(ellipse at 5% 50%, rgba(37, 99, 235, 0.07) 0%, transparent 55%),
+      radial-gradient(ellipse at 95% 80%, rgba(14, 116, 144, 0.05) 0%, transparent 50%),
+      hsl(210, 42%, 96%);
     padding: var(--space-2xl) 0;
     border-top: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
+    overflow: hidden;
+  }
+
+  :global([data-theme="dark"]) .solution {
+    background:
+      radial-gradient(ellipse at 5% 50%, rgba(56, 189, 248, 0.08) 0%, transparent 55%),
+      radial-gradient(ellipse at 95% 80%, rgba(14, 116, 144, 0.06) 0%, transparent 50%),
+      hsl(222, 50%, 4%);
+  }
+
+  .solution__deco {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .solution__deco--compu {
+    bottom: -20px;
+    right: -40px;
+    width: 380px;
+    opacity: 0.07;
+    transform: rotate(10deg);
+    transition: opacity 0.3s;
+  }
+
+  [data-theme="dark"] .solution__deco--compu {
+    opacity: 0.12;
   }
 
   .solution__eyebrow {
-    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.4rem 1rem 0.4rem 0.7rem;
+    background: var(--color-accent-light);
+    border: 1px solid rgba(14, 116, 144, 0.18);
+    border-radius: var(--radius-full);
+    font-size: 0.72rem;
     font-weight: 700;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--color-accent);
-    margin-bottom: var(--space-sm);
-    text-align: center;
+    margin-bottom: var(--space-md);
+    /* center block */
+    margin-inline: auto;
+    width: fit-content;
+  }
+
+  .solution__eyebrow::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    background: var(--color-accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+    animation: eyebrow-pulse-acc 2.4s ease-in-out infinite;
+  }
+
+  @keyframes eyebrow-pulse-acc {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.35; transform: scale(0.7); }
   }
 
   .solution__headline {
@@ -469,7 +547,7 @@ const IconMap = {
     display: flex;
     flex-direction: column;
     background: rgba(10, 15, 30, 0.2);
-    min-height: 480px;
+    min-height: 540px; /* Aumentamos el alto como pidió el usuario */
     position: relative;
   }
 
@@ -1058,6 +1136,16 @@ const IconMap = {
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .solution__card:hover .solution__card-icon {
+    transform: scale(1.15) rotate(-5deg);
+    filter: drop-shadow(0 4px 8px color-mix(in srgb, var(--color-accent) 30%, transparent));
+  }
+
+  .solution__card-icon {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
   }
 
   .solution__card-top {
@@ -1160,6 +1248,53 @@ const IconMap = {
   background: rgba(248, 250, 252, 0.95);
 }
 
+:global([data-theme="light"]) .simulator__search-bar {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+:global([data-theme="light"]) .simulator__nav-item {
+  color: #475569;
+}
+
+:global([data-theme="light"]) .simulator__nav-item.is-active {
+  background: rgba(37, 99, 235, 0.08);
+  color: var(--color-primary);
+}
+
+:global([data-theme="light"]) .simulator__nav-item:hover {
+  background: rgba(0, 0, 0, 0.03);
+  color: #0f172a;
+}
+
+:global([data-theme="light"]) .widget-card {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+:global([data-theme="light"]) .timeline-row {
+  border-color: #e2e8f0;
+}
+
+:global([data-theme="light"]) .profile-header {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+:global([data-theme="light"]) .history-card {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+:global([data-theme="light"]) .profile-tabs {
+  border-color: #e2e8f0;
+}
+
+:global([data-theme="light"]) .agenda-view__calendar {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
 :global([data-theme="light"]) .agenda-card {
   background: #ffffff;
 }
@@ -1203,4 +1338,211 @@ const IconMap = {
 :global([data-theme="light"]) .phone-card-subtitle {
   color: #0f172a;
 }
+  /* Agregados de estilos de Mockup Actualizados (Agenda, Patient Profile, Whatsapp) */
+  
+  .agenda-view__layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: var(--space-md);
+    flex: 1;
+    margin-top: 1rem;
+  }
+
+  .agenda-view__header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .agenda-view__date {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+  }
+
+  .agenda-view__widgets {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .widget-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-sm);
+    padding: var(--space-sm);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .widget-label { font-size: 0.75rem; text-transform: uppercase; color: var(--color-text-muted); font-weight: bold; margin-bottom: 4px; }
+  .widget-value { font-size: 1rem; font-weight: 600; margin-bottom: 2px; }
+  .widget-desc { font-size: 0.8rem; color: var(--color-text-muted); }
+
+  .agenda-view__calendar {
+    background: rgba(10, 15, 30, 0.3);
+    border-radius: var(--radius-sm);
+    padding: var(--space-sm);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+  }
+
+  .timeline-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+  }
+
+  .time-label {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    min-width: 45px;
+    margin-top: 4px;
+  }
+
+  .timeline-event {
+    flex: 1;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .timeline-event.primary { background: rgba(56, 189, 248, 0.1); color: var(--color-primary-light); border-left: 3px solid var(--color-primary); }
+  .timeline-event.success { background: rgba(34, 197, 94, 0.1); color: #4ade80; border-left: 3px solid #22c55e; }
+  .timeline-event.secondary { background: rgba(139, 92, 246, 0.1); color: #a78bfa; border-left: 3px solid #8b5cf6; }
+  .timeline-event.empty { background: transparent; color: var(--color-text-muted); font-style: italic; }
+
+  /* Profile View */
+  .profile-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    border-radius: var(--radius-md);
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .profile-avatar {
+    width: 60px;
+    height: 60px;
+    background: rgba(56, 189, 248, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .profile-name { font-size: 1.25rem; font-weight: bold; margin:0; }
+  .profile-meta { font-size: 0.85rem; color: var(--color-text-muted); }
+  .profile-actions { margin-left: auto; }
+
+  .profile-tabs {
+    display: flex;
+    gap: 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .profile-tabs .tab {
+    padding: 8px 4px;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    font-weight: 500;
+  }
+  .profile-tabs .tab.active {
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-primary);
+  }
+
+  .history-card {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    background: rgba(0,0,0,0.2);
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(255,255,255,0.02);
+  }
+  .history-date {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--color-text-muted);
+    min-width: 90px;
+  }
+  .history-content h5 { margin: 0; font-size: 1rem; }
+
+  /* WhatsApp View */
+  .whatsapp-view {
+    max-width: 400px;
+    margin: 0 auto;
+    background: #0b141a;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .wa-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #202c33;
+    padding: 12px 16px;
+  }
+  .wa-avatar { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; background: #fff; }
+  .wa-info { display: flex; flex-direction: column; }
+  .wa-name { font-weight: bold; font-size: 0.95rem; color: #e9edef; }
+  .wa-status { font-size: 0.75rem; color: #8696a0; }
+  
+  .wa-chat {
+    flex: 1;
+    background: url('/images/wa-bg.png') #0b141a; /* opcional bg whatsapp */
+    background-size: cover;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto;
+  }
+  .wa-date {
+    align-self: center;
+    background: #182229;
+    color: #8696a0;
+    font-size: 0.75rem;
+    padding: 4px 12px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+  }
+  .wa-bbl {
+    max-width: 85%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #e9edef;
+    position: relative;
+    line-height: 1.4;
+  }
+  .wa-bbl.received { background: #202c33; align-self: flex-start; border-top-left-radius: 0; }
+  .wa-bbl.sent { background: #005c4b; align-self: flex-end; border-top-right-radius: 0; }
+  .wa-time { font-size: 0.65rem; color: rgba(255,255,255,0.6); align-self: flex-end; margin-top: 4px; text-align: right; }
+  
+  .wa-input {
+    background: #202c33;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+  }
+
+  .text-right { text-align: right; }
+
+  /* Utility micro-classes used inside the simulator */
+  .mt-2 { margin-top: 0.5rem; }
+  .mt-3 { margin-top: 0.75rem; }
+  .mt-4 { margin-top: 1rem; }
+  .ml-1 { margin-left: 0.25rem; }
+  .text-xs { font-size: 0.7rem; }
+  .text-muted { color: var(--color-text-muted); }
+  .text-sm { font-size: 0.8rem; }
+  .inline { display: inline; }
+
 </style>

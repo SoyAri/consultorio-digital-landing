@@ -21,23 +21,34 @@ const { value, label, class: className = '', id } = Astro.props;
     text-align: center;
     padding: var(--space-lg) var(--space-md);
     background: var(--color-surface);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
   }
 
   .stat-card__value {
     font-size: clamp(2.25rem, 5vw, 3.25rem);
     font-weight: 800;
     font-family: var(--font-title);
-    color: var(--color-primary);
-    line-height: 1;
+    line-height: 1.2;
+    padding-bottom: 0.08em;
     margin-bottom: var(--space-xs);
     background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .stat-card__label {
     font-size: 0.9rem;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--color-text-muted);
     line-height: 1.5;
   }

@@ -1,0 +1,104 @@
+---
+import { siteConfig } from '../../config/site';
+
+const { benefits } = siteConfig;
+---
+
+<div class="stats-strip" aria-label="Métricas clave">
+  <div class="container">
+    <ul class="stats-strip__list">
+      {benefits.metrics.map((m, i) => (
+        <li class="stats-strip__item">
+          <span class="stats-strip__value">{m.value}</span>
+          <span class="stats-strip__label">{m.label}</span>
+          {i < benefits.metrics.length - 1 && (
+            <span class="stats-strip__sep" aria-hidden="true"></span>
+          )}
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>
+
+<style>
+  .stats-strip {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+    padding: var(--space-md) 0;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .stats-strip::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
+  }
+
+  .stats-strip__list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+  }
+
+  .stats-strip__item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    flex: 1;
+    min-width: 200px;
+    max-width: 340px;
+    position: relative;
+  }
+
+  .stats-strip__value {
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    flex-shrink: 0;
+    font-family: var(--font-title);
+  }
+
+  .stats-strip__label {
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.88);
+    line-height: 1.4;
+    font-weight: 600;
+  }
+
+  .stats-strip__sep {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+  @media (max-width: 768px) {
+    .stats-strip__list {
+      justify-content: center;
+      gap: var(--space-lg);
+    }
+
+    .stats-strip__sep {
+      display: none;
+    }
+
+    .stats-strip__item {
+      flex-direction: column;
+      text-align: center;
+      min-width: 120px;
+      gap: 0.25rem;
+    }
+  }
+</style>
