@@ -1,11 +1,14 @@
 ---
 import { siteConfig } from '../../config/site';
 import Button from '../ui/Button.astro';
+import { Stethoscope, Sun, Moon } from 'lucide-astro';
 ---
 <header class="navbar glass">
   <div class="container navbar__inner">
     <a href="/" class="navbar__logo" aria-label={`${siteConfig.name} — Inicio`}>
-      <span class="navbar__logo-mark" aria-hidden="true">🦷</span>
+      <span class="navbar__logo-mark" aria-hidden="true">
+        <Stethoscope size={24} strokeWidth={2.5} class="text-primary" />
+      </span>
       <span class="navbar__logo-text">{siteConfig.name}</span>
     </a>
 
@@ -20,6 +23,16 @@ import Button from '../ui/Button.astro';
     </nav>
 
     <div class="navbar__actions">
+      <button
+        id="theme-toggle"
+        class="theme-toggle"
+        aria-label="Cambiar tema de color"
+        type="button"
+      >
+        <span class="theme-toggle__icon sun"><Sun size={20} /></span>
+        <span class="theme-toggle__icon moon"><Moon size={20} /></span>
+      </button>
+
       <Button
         variant="cta"
         class="navbar__cta animate-pulse-glow"
@@ -69,24 +82,35 @@ import Button from '../ui/Button.astro';
   (function () {
     var hamburger = document.getElementById('hamburger');
     var mobileMenu = document.getElementById('mobile-menu');
-    if (!hamburger || !mobileMenu) return;
+    var themeToggle = document.getElementById('theme-toggle');
 
-    hamburger.addEventListener('click', function () {
-      var isOpen = mobileMenu.classList.contains('is-open');
-      mobileMenu.classList.toggle('is-open');
-      hamburger.setAttribute('aria-expanded', String(!isOpen));
-      hamburger.setAttribute('aria-label', isOpen ? 'Abrir menú' : 'Cerrar menú');
-      hamburger.classList.toggle('is-active');
-    });
-
-    mobileMenu.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        mobileMenu.classList.remove('is-open');
-        hamburger.classList.remove('is-active');
-        hamburger.setAttribute('aria-expanded', 'false');
-        hamburger.setAttribute('aria-label', 'Abrir menú');
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', function () {
+        var isOpen = mobileMenu.classList.contains('is-open');
+        mobileMenu.classList.toggle('is-open');
+        hamburger.setAttribute('aria-expanded', String(!isOpen));
+        hamburger.setAttribute('aria-label', isOpen ? 'Abrir menú' : 'Cerrar menú');
+        hamburger.classList.toggle('is-active');
       });
-    });
+
+      mobileMenu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          mobileMenu.classList.remove('is-open');
+          hamburger.classList.remove('is-active');
+          hamburger.setAttribute('aria-expanded', 'false');
+          hamburger.setAttribute('aria-label', 'Abrir menú');
+        });
+      });
+    }
+
+    if (themeToggle) {
+      themeToggle.addEventListener('click', function () {
+        var current = document.documentElement.getAttribute('data-theme');
+        var next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      });
+    }
   })();
 </script>
 
@@ -259,6 +283,40 @@ import Button from '../ui/Button.astro';
 
   .navbar__spacer {
     height: var(--nav-height);
+  }
+
+  .theme-toggle {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    padding: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    width: 38px;
+    height: 38px;
+    transition: all 0.2s ease;
+  }
+
+  .theme-toggle:hover {
+    background: var(--color-primary-light);
+    border-color: rgba(56, 189, 248, 0.3);
+    color: var(--color-primary);
+  }
+
+  .theme-toggle__icon {
+    display: none;
+  }
+
+  /* Show correct icon based on data-theme */
+  :global([data-theme="light"]) .theme-toggle__icon.moon {
+    display: block;
+  }
+
+  :global([data-theme="dark"]) .theme-toggle__icon.sun {
+    display: block;
   }
 
   @media (max-width: 768px) {

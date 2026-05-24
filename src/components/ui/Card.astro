@@ -31,7 +31,7 @@ const classes = [
 
 <style>
   .card {
-    background: var(--color-surface);
+    background: var(--color-surface-glass);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     padding: var(--space-md);
@@ -40,23 +40,26 @@ const classes = [
     flex-direction: column;
     gap: var(--space-sm);
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
   }
 
   .card--border-top {
-    border-top: 4px solid var(--color-primary);
+    border-top: 2px solid var(--color-primary);
   }
 
   .card--hover:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-md);
-    border-color: var(--color-primary-muted);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md), 0 0 20px rgba(56, 189, 248, 0.15);
+    border-color: rgba(56, 189, 248, 0.4);
+    background: rgba(255, 255, 255, 0.06);
   }
 
-  /* Glass override when active */
+  /* Glass override */
   .card.glass {
     background: var(--color-surface-glass);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 </style>

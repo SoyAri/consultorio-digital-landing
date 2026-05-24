@@ -3,21 +3,23 @@ import { siteConfig } from '../../config/site';
 import Card from '../ui/Card.astro';
 import Button from '../ui/Button.astro';
 import StatCard from '../ui/StatCard.astro';
+import { Stethoscope, Layers, Shield, User, ChevronLeft, ChevronRight, CheckCircle2, TrendingUp, Laptop, RefreshCw } from 'lucide-astro';
 
 const { benefits } = siteConfig;
+
+const IconMap = {
+  stethoscope: Stethoscope,
+  layers: Layers,
+  shield: Shield,
+  user: User,
+};
 ---
 
 <section id="benefits" class="benefits">
   <div class="container">
     <p class="benefits__eyebrow">{benefits.eyebrow}</p>
-
-    <h2 class="benefits__headline">
-      {benefits.headline}
-    </h2>
-
-    <p class="benefits__subheadline">
-      {benefits.subheadline}
-    </p>
+    <h2 class="benefits__headline">{benefits.headline}</h2>
+    <p class="benefits__subheadline">{benefits.subheadline}</p>
 
     <!-- Métricas destacadas -->
     <div class="benefits__metrics">
@@ -28,40 +30,151 @@ const { benefits } = siteConfig;
       }
     </div>
 
+    <!-- Interactive Carousel Showcase: Capturas y Reportes del Consultorio -->
+    <div class="benefits__carousel-section">
+      <h3 class="benefits__carousel-title">Reportes e Indicadores de Rendimiento</h3>
+      <p class="benefits__carousel-subtitle">Analiza la productividad, asistencias e ingresos de tu clínica en tiempo real</p>
+
+      <div class="carousel glass">
+        <!-- Slides wrapper -->
+        <div class="carousel__wrapper">
+          
+          <!-- Slide 1: Asistencias -->
+          <div class="carousel__slide is-active" id="slide-1">
+            <div class="slide-content">
+              <div class="slide-graphic glass-dark">
+                <div class="report-card">
+                  <div class="report-card__header">
+                    <TrendingUp size={20} class="text-cta" />
+                    <span>Tasa de Inasistencias</span>
+                  </div>
+                  <div class="report-card__stat">-60% inasistencias</div>
+                  <div class="progress-bar">
+                    <div class="progress-fill fill-orange" style="width: 84%"></div>
+                  </div>
+                  <div class="report-card__legend">
+                    <span>Citas Confirmadas (84%)</span>
+                    <span>No Shows (6%)</span>
+                  </div>
+                </div>
+              </div>
+              <div class="slide-info">
+                <span class="slide-tag">Productividad</span>
+                <h4>Reduce ausentismo automáticamente</h4>
+                <p>Nuestros recordatorios inteligentes por WhatsApp y SMS hacen el trabajo sucio por ti, logrando liberar espacios cancelados al instante.</p>
+                <div class="slide-bullets">
+                  <div class="bullet-item"><CheckCircle2 size={16} class="text-cta" /> Confirmación bidireccional</div>
+                  <div class="bullet-item"><CheckCircle2 size={16} class="text-cta" /> Liberación automática de agenda</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2: Finanzas -->
+          <div class="carousel__slide" id="slide-2">
+            <div class="slide-content">
+              <div class="slide-graphic glass-dark">
+                <div class="report-card">
+                  <div class="report-card__header">
+                    <TrendingUp size={20} class="text-primary" />
+                    <span>Control Clínico Mensual</span>
+                  </div>
+                  <div class="report-card__stat">$14,850 USD</div>
+                  <div class="progress-bar">
+                    <div class="progress-fill fill-blue" style="width: 72%"></div>
+                  </div>
+                  <div class="report-card__legend">
+                    <span>Tratamientos Cobrados (72%)</span>
+                    <span>Presupuestos Pendientes (28%)</span>
+                  </div>
+                </div>
+              </div>
+              <div class="slide-info">
+                <span class="slide-tag">Finanzas</span>
+                <h4>Seguimiento a presupuestos y cobros</h4>
+                <p>Crea cotizaciones y planes de tratamiento directamente en el odontograma. Dale seguimiento a los abonos y saldos de cada paciente sin hojas de cálculo complejas.</p>
+                <div class="slide-bullets">
+                  <div class="bullet-item"><CheckCircle2 size={16} class="text-primary" /> Planes de tratamiento multi-fase</div>
+                  <div class="bullet-item"><CheckCircle2 size={16} class="text-primary" /> Historial de pagos integrados</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3: Multi-dispositivo -->
+          <div class="carousel__slide" id="slide-3">
+            <div class="slide-content">
+              <div class="slide-graphic glass-dark flex-center">
+                <div class="sync-graphic">
+                  <Laptop size={48} class="text-primary animate-float" />
+                  <RefreshCw size={24} class="text-accent spin-animation" />
+                  <div class="db-cloud-icon glass">Cloud Sync</div>
+                </div>
+              </div>
+              <div class="slide-info">
+                <span class="slide-tag">Nube</span>
+                <h4>Sincronización en Tiempo Real</h4>
+                <p>Accede de forma segura desde cualquier computadora, tableta o celular. Tu información se encripta con algoritmos bancarios y se respalda automáticamente cada hora.</p>
+                <div class="slide-bullets">
+                  <div class="bullet-item"><CheckCircle2 size={16} class="text-accent" /> Copias de seguridad automáticas</div>
+                  <div class="bullet-item"><CheckCircle2 size={16} class="text-accent" /> Encriptación SSL de grado militar</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Controls -->
+        <button class="carousel__control prev" aria-label="Slide anterior" type="button">
+          <ChevronLeft size={24} />
+        </button>
+        <button class="carousel__control next" aria-label="Siguiente slide" type="button">
+          <ChevronRight size={24} />
+        </button>
+
+        <!-- Indicators -->
+        <div class="carousel__indicators">
+          <button class="indicator-dot is-active" data-slide="0" aria-label="Ir al slide 1" type="button"></button>
+          <button class="indicator-dot" data-slide="1" aria-label="Ir al slide 2" type="button"></button>
+          <button class="indicator-dot" data-slide="2" aria-label="Ir al slide 3" type="button"></button>
+        </div>
+      </div>
+    </div>
+
     <!-- Roles y permisos -->
     <div class="benefits__roles-section">
       <h3 class="benefits__roles-title">{benefits.rolesSection.title}</h3>
-      <p class="benefits__roles-subtitle">
-        {benefits.rolesSection.subtitle}
-      </p>
+      <p class="benefits__roles-subtitle">{benefits.rolesSection.subtitle}</p>
 
       <div class="benefits__roles">
         {
-          benefits.rolesSection.roles.map((role) => (
-            <Card class="benefits__role" borderTop={true} hoverEffect={true}>
-              <div class="benefits__role-icon animate-float" aria-hidden="true">
-                {role.icon}
-              </div>
-              <h4 class="benefits__role-name">{role.name}</h4>
-              <ul class="benefits__role-perms">
-                {
-                  role.perms.map((perm) => (
-                    <li>{perm}</li>
-                  ))
-                }
-              </ul>
-            </Card>
-          ))
+          benefits.rolesSection.roles.map((role) => {
+            const IconComponent = IconMap[role.icon as keyof typeof IconMap];
+            return (
+              <Card class="benefits__role" borderTop={true} hoverEffect={true}>
+                <div class="benefits__role-icon animate-float" aria-hidden="true">
+                  {IconComponent && <IconComponent size={32} class="text-primary" />}
+                </div>
+                <h4 class="benefits__role-name">{role.name}</h4>
+                <ul class="benefits__role-perms">
+                  {
+                    role.perms.map((perm) => (
+                      <li>{perm}</li>
+                    ))
+                  }
+                </ul>
+              </Card>
+            );
+          })
         }
       </div>
     </div>
 
     <!-- CTA final -->
-    <div class="benefits__cta-block">
+    <div class="benefits__cta-block animate-border-glow">
       <h3 class="benefits__cta-headline">{benefits.cta.headline}</h3>
-      <p class="benefits__cta-body">
-        {benefits.cta.body}
-      </p>
+      <p class="benefits__cta-body">{benefits.cta.body}</p>
       <Button
         variant="cta"
         class="benefits__cta-btn animate-pulse-glow"
@@ -73,9 +186,77 @@ const { benefits } = siteConfig;
   </div>
 </section>
 
+<!-- Carousel Script -->
+<script is:inline>
+  (function () {
+    const slides = document.querySelectorAll('.carousel__slide');
+    const dots = document.querySelectorAll('.indicator-dot');
+    const prevBtn = document.querySelector('.carousel__control.prev');
+    const nextBtn = document.querySelector('.carousel__control.next');
+    let currentIdx = 0;
+    let autoplayInterval;
+
+    function showSlide(index) {
+      currentIdx = (index + slides.length) % slides.length;
+      slides.forEach((slide, idx) => {
+        if (idx === currentIdx) {
+          slide.classList.add('is-active');
+        } else {
+          slide.classList.remove('is-active');
+        }
+      });
+      dots.forEach((dot, idx) => {
+        if (idx === currentIdx) {
+          dot.classList.add('is-active');
+        } else {
+          dot.classList.remove('is-active');
+        }
+      });
+    }
+
+    function nextSlide() {
+      showSlide(currentIdx + 1);
+    }
+
+    function prevSlide() {
+      showSlide(currentIdx - 1);
+    }
+
+    if (prevBtn && nextBtn) {
+      prevBtn.addEventListener('click', () => {
+        prevSlide();
+        resetAutoplay();
+      });
+      nextBtn.addEventListener('click', () => {
+        nextSlide();
+        resetAutoplay();
+      });
+    }
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const slideIdx = parseInt(dot.getAttribute('data-slide') || '0', 10);
+        showSlide(slideIdx);
+        resetAutoplay();
+      });
+    });
+
+    function startAutoplay() {
+      autoplayInterval = setInterval(nextSlide, 5000);
+    }
+
+    function resetAutoplay() {
+      clearInterval(autoplayInterval);
+      startAutoplay();
+    }
+
+    startAutoplay();
+  })();
+</script>
+
 <style>
   .benefits {
-    background: var(--color-bg);
+    background: transparent;
     padding: var(--space-2xl) 0;
   }
 
@@ -86,6 +267,7 @@ const { benefits } = siteConfig;
     text-transform: uppercase;
     color: var(--color-primary);
     margin-bottom: var(--space-sm);
+    text-align: center;
   }
 
   .benefits__headline {
@@ -95,6 +277,7 @@ const { benefits } = siteConfig;
     color: var(--color-text);
     margin-bottom: var(--space-md);
     letter-spacing: -0.015em;
+    text-align: center;
   }
 
   .benefits__subheadline {
@@ -102,7 +285,9 @@ const { benefits } = siteConfig;
     color: var(--color-text-muted);
     max-width: 60ch;
     line-height: 1.75;
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-2xl);
+    text-align: center;
+    margin-inline: auto;
   }
 
   /* Métricas */
@@ -113,7 +298,250 @@ const { benefits } = siteConfig;
     margin-bottom: var(--space-2xl);
   }
 
-  /* Roles */
+  /* Carousel Section */
+  .benefits__carousel-section {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .benefits__carousel-title {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: var(--color-text);
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.01em;
+    text-align: center;
+  }
+
+  .benefits__carousel-subtitle {
+    font-size: 1.05rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-lg);
+    text-align: center;
+  }
+
+  .carousel {
+    position: relative;
+    background: rgba(15, 23, 42, 0.45);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    padding: var(--space-lg);
+    min-height: 320px;
+    display: flex;
+    align-items: center;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .carousel__wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .carousel__slide {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    width: 100%;
+  }
+
+  .carousel__slide.is-active {
+    display: block;
+    opacity: 1;
+  }
+
+  .slide-content {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  .slide-graphic {
+    background: rgba(10, 15, 30, 0.8);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-md);
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .slide-graphic.flex-center {
+    align-items: center;
+  }
+
+  .sync-graphic {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    position: relative;
+  }
+
+  .spin-animation {
+    animation: spin 8s linear infinite;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .db-cloud-icon {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 0.2rem 0.5rem;
+    color: var(--color-accent);
+    border-radius: var(--radius-xs);
+  }
+
+  .report-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .report-card__header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .report-card__stat {
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: white;
+  }
+
+  .progress-bar {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    margin: 4px 0;
+  }
+
+  .progress-fill {
+    height: 100%;
+    border-radius: var(--radius-full);
+  }
+
+  .progress-fill.fill-orange { background: var(--color-cta); }
+  .progress-fill.fill-blue { background: var(--color-primary); }
+
+  .report-card__legend {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+  }
+
+  .slide-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .slide-tag {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .slide-info h4 {
+    font-size: 1.5rem;
+    font-weight: 800;
+  }
+
+  .slide-info p {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  .slide-bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: var(--space-xs);
+  }
+
+  .bullet-item {
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .carousel__control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid var(--color-border);
+    color: white;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+    z-index: 5;
+    transition: all 0.2s ease;
+  }
+
+  .carousel__control:hover {
+    background: var(--color-primary-light);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .carousel__control.prev { left: var(--space-sm); }
+  .carousel__control.next { right: var(--space-sm); }
+
+  .carousel__indicators {
+    position: absolute;
+    bottom: var(--space-sm);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: var(--space-xs);
+    z-index: 5;
+  }
+
+  .indicator-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.3s ease;
+  }
+
+  .indicator-dot.is-active {
+    background: var(--color-primary);
+    width: 20px;
+    border-radius: var(--radius-full);
+  }
+
+  /* Roles Section */
   .benefits__roles-section {
     margin-bottom: var(--space-2xl);
   }
@@ -124,12 +552,14 @@ const { benefits } = siteConfig;
     color: var(--color-text);
     margin-bottom: 0.25rem;
     letter-spacing: -0.01em;
+    text-align: center;
   }
 
   .benefits__roles-subtitle {
     font-size: 1.05rem;
     color: var(--color-text-muted);
     margin-bottom: var(--space-lg);
+    text-align: center;
   }
 
   .benefits__roles {
@@ -143,7 +573,6 @@ const { benefits } = siteConfig;
   }
 
   .benefits__role-icon {
-    font-size: 2.5rem;
     margin-bottom: var(--space-sm);
     line-height: 1;
     display: inline-block;
@@ -182,7 +611,8 @@ const { benefits } = siteConfig;
 
   /* CTA block */
   .benefits__cta-block {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(10, 15, 30, 0.8) 100%);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
     padding: var(--space-2xl) var(--space-lg);
     text-align: center;
@@ -199,7 +629,7 @@ const { benefits } = siteConfig;
     left: -30%;
     width: 80%;
     height: 180%;
-    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 60%);
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.05) 0%, rgba(56, 189, 248, 0) 60%);
     transform: rotate(-15deg);
     pointer-events: none;
   }
@@ -223,6 +653,17 @@ const { benefits } = siteConfig;
   .benefits__cta-btn {
     font-size: 1.1rem;
     padding: 1rem 2.5rem;
+  }
+
+  @media (max-width: 992px) {
+    .slide-content {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+
+    .carousel {
+      padding: var(--space-lg) var(--space-sm);
+    }
   }
 
   @media (max-width: 768px) {

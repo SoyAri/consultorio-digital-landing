@@ -69,10 +69,10 @@ export const siteConfig: SiteConfig = {
     ctaText: "Hablar con un asesor →",
     impactLabel: "Sin Consultorio Digital, cada semana:",
     impacts: [
-      { icon: "⏱️", title: "10–20 min perdidos", desc: "por paciente buscando expedientes" },
-      { icon: "💬", title: "Recordatorios manuales", desc: "por WhatsApp que dependen de que alguien no olvide enviarlos" },
-      { icon: "📋", title: "Citas duplicadas", desc: "por manejo en papel o Excel sin sincronización" },
-      { icon: "📁", title: "Expedientes dispersos", desc: "entre papel, celular y correos sin orden" },
+      { icon: "clock", title: "10–20 min perdidos", desc: "por paciente buscando expedientes" },
+      { icon: "message-square", title: "Recordatorios manuales", desc: "por WhatsApp que dependen de que alguien no olvide enviarlos" },
+      { icon: "calendar", title: "Citas duplicadas", desc: "por manejo en papel o Excel sin sincronización" },
+      { icon: "folder", title: "Expedientes dispersos", desc: "entre papel, celular y correos sin orden" },
     ],
     stat: {
       number: "73%",
@@ -80,17 +80,17 @@ export const siteConfig: SiteConfig = {
     },
     cards: [
       {
-        icon: "📋",
+        icon: "calendar",
         title: "Agendas en papel y Excel",
         body: "Citas duplicadas, letra ilegible de terceros y búsquedas interminables. Cuando el cuaderno se pierde, la información del paciente desaparece contigo."
       },
       {
-        icon: "💬",
+        icon: "message-square",
         title: "Confirmaciones por WhatsApp",
         body: "Mensajes sin respuesta, pacientes que no llegan y recordatorios manuales que dependen de que tú o tu asistente no olviden enviarlos ese día."
       },
       {
-        icon: "📁",
+        icon: "folder",
         title: "Expedientes fragmentados",
         body: "Radiografías en el celular, notas clínicas en papel y presupuestos en correos. Nadie tiene el cuadro completo del paciente a la mano cuando lo necesita."
       }
@@ -103,7 +103,7 @@ export const siteConfig: SiteConfig = {
     features: [
       {
         num: "01",
-        icon: "📅",
+        icon: "calendar",
         title: "Agenda digital centralizada",
         body: "Gestiona todas las citas desde una sola pantalla. Tu secretaria, tú y tus asociados ven el calendario en tiempo real. Sin llamadas, sin mensajes — las confirmaciones llegan solas.",
         bullets: [
@@ -114,7 +114,7 @@ export const siteConfig: SiteConfig = {
       },
       {
         num: "02",
-        icon: "🦷",
+        icon: "activity",
         title: "Odontograma y expediente digital",
         body: "Registra diagnósticos y tratamientos directamente sobre el odontograma interactivo. El expediente completo del paciente, disponible en segundos sin buscar entre papeles.",
         bullets: [
@@ -125,7 +125,7 @@ export const siteConfig: SiteConfig = {
       },
       {
         num: "03",
-        icon: "🔐",
+        icon: "key",
         title: "Acceso seguro para pacientes",
         body: "Tus pacientes inician sesión con un código OTP enviado a su celular. Sin contraseñas que olvidar, sin fricción. Ellos consultan sus citas, historial y presupuestos desde su teléfono.",
         bullets: [
@@ -136,7 +136,7 @@ export const siteConfig: SiteConfig = {
       },
       {
         num: "04",
-        icon: "🔔",
+        icon: "bell",
         title: "Recordatorios automáticos",
         body: "El sistema avisa a tus pacientes antes de cada cita sin que nadie tenga que hacerlo manualmente. Las inasistencias se reducen desde el primer día de uso.",
         bullets: [
@@ -161,7 +161,7 @@ export const siteConfig: SiteConfig = {
       subtitle: "No más contraseñas compartidas. Cada rol ve solo lo que necesita.",
       roles: [
         {
-          icon: "👨‍⚕️",
+          icon: "stethoscope",
           name: "Doctor",
           perms: [
             "Expedientes y odontogramas",
@@ -171,7 +171,7 @@ export const siteConfig: SiteConfig = {
           ]
         },
         {
-          icon: "🗂️",
+          icon: "layers",
           name: "Secretaria",
           perms: [
             "Gestión de citas y agenda",
@@ -181,7 +181,7 @@ export const siteConfig: SiteConfig = {
           ]
         },
         {
-          icon: "🏥",
+          icon: "shield",
           name: "Administrador",
           perms: [
             "Alta de usuarios y roles",
@@ -191,7 +191,7 @@ export const siteConfig: SiteConfig = {
           ]
         },
         {
-          icon: "🙋",
+          icon: "user",
           name: "Paciente",
           perms: [
             "Sus citas programadas",

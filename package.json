@@ -12,6 +12,7 @@
     "astro": "bun x --bun astro"
   },
   "dependencies": {
-    "astro": "^6.3.7"
+    "astro": "^6.3.7",
+    "lucide-astro": "^0.556.0"
   }
 }
