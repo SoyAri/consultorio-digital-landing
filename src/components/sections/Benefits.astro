@@ -1,0 +1,234 @@
+---
+import { siteConfig } from '../../config/site';
+import Card from '../ui/Card.astro';
+import Button from '../ui/Button.astro';
+import StatCard from '../ui/StatCard.astro';
+
+const { benefits } = siteConfig;
+---
+
+<section id="benefits" class="benefits">
+  <div class="container">
+    <p class="benefits__eyebrow">{benefits.eyebrow}</p>
+
+    <h2 class="benefits__headline">
+      {benefits.headline}
+    </h2>
+
+    <p class="benefits__subheadline">
+      {benefits.subheadline}
+    </p>
+
+    <!-- Métricas destacadas -->
+    <div class="benefits__metrics">
+      {
+        benefits.metrics.map((metric) => (
+          <StatCard value={metric.value} label={metric.label} />
+        ))
+      }
+    </div>
+
+    <!-- Roles y permisos -->
+    <div class="benefits__roles-section">
+      <h3 class="benefits__roles-title">{benefits.rolesSection.title}</h3>
+      <p class="benefits__roles-subtitle">
+        {benefits.rolesSection.subtitle}
+      </p>
+
+      <div class="benefits__roles">
+        {
+          benefits.rolesSection.roles.map((role) => (
+            <Card class="benefits__role" borderTop={true} hoverEffect={true}>
+              <div class="benefits__role-icon animate-float" aria-hidden="true">
+                {role.icon}
+              </div>
+              <h4 class="benefits__role-name">{role.name}</h4>
+              <ul class="benefits__role-perms">
+                {
+                  role.perms.map((perm) => (
+                    <li>{perm}</li>
+                  ))
+                }
+              </ul>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- CTA final -->
+    <div class="benefits__cta-block">
+      <h3 class="benefits__cta-headline">{benefits.cta.headline}</h3>
+      <p class="benefits__cta-body">
+        {benefits.cta.body}
+      </p>
+      <Button
+        variant="cta"
+        class="benefits__cta-btn animate-pulse-glow"
+        onclick="window.$crisp && window.$crisp.push(['do', 'chat:open'])"
+      >
+        {benefits.cta.btnText}
+      </Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .benefits {
+    background: var(--color-bg);
+    padding: var(--space-2xl) 0;
+  }
+
+  .benefits__eyebrow {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin-bottom: var(--space-sm);
+  }
+
+  .benefits__headline {
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--color-text);
+    margin-bottom: var(--space-md);
+    letter-spacing: -0.015em;
+  }
+
+  .benefits__subheadline {
+    font-size: 1.15rem;
+    color: var(--color-text-muted);
+    max-width: 60ch;
+    line-height: 1.75;
+    margin-bottom: var(--space-xl);
+  }
+
+  /* Métricas */
+  .benefits__metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+    margin-bottom: var(--space-2xl);
+  }
+
+  /* Roles */
+  .benefits__roles-section {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .benefits__roles-title {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: var(--color-text);
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.01em;
+  }
+
+  .benefits__roles-subtitle {
+    font-size: 1.05rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-lg);
+  }
+
+  .benefits__roles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-md);
+  }
+
+  .benefits__role {
+    padding: var(--space-lg);
+  }
+
+  .benefits__role-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-sm);
+    line-height: 1;
+    display: inline-block;
+  }
+
+  .benefits__role-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: var(--space-sm);
+  }
+
+  .benefits__role-perms {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .benefits__role-perms li {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .benefits__role-perms li::before {
+    content: '•';
+    color: var(--color-accent);
+    font-weight: 800;
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+
+  /* CTA block */
+  .benefits__cta-block {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2xl) var(--space-lg);
+    text-align: center;
+    color: white;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .benefits__cta-block::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -30%;
+    width: 80%;
+    height: 180%;
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 60%);
+    transform: rotate(-15deg);
+    pointer-events: none;
+  }
+
+  .benefits__cta-headline {
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 800;
+    margin-bottom: var(--space-sm);
+    letter-spacing: -0.02em;
+  }
+
+  .benefits__cta-body {
+    font-size: 1.15rem;
+    opacity: 0.95;
+    max-width: 55ch;
+    margin-inline: auto;
+    line-height: 1.7;
+    margin-bottom: var(--space-md);
+  }
+
+  .benefits__cta-btn {
+    font-size: 1.1rem;
+    padding: 1rem 2.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .benefits__metrics {
+      grid-template-columns: 1fr;
+      gap: var(--space-sm);
+    }
+  }
+</style>

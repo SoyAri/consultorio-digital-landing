@@ -1,0 +1,107 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary' | 'cta' | 'outline';
+  href?: string;
+  class?: string;
+  onclick?: string;
+  type?: 'button' | 'submit' | 'reset';
+  id?: string;
+}
+
+const {
+  variant = 'primary',
+  href,
+  class: className = '',
+  onclick,
+  type = 'button',
+  id,
+  ...rest
+} = Astro.props;
+
+const baseStyles = 'btn transition-all-cool';
+const variantStyles = {
+  primary: 'btn--primary',
+  secondary: 'btn--secondary',
+  cta: 'btn--cta',
+  outline: 'btn--outline',
+};
+
+const classes = `${baseStyles} ${variantStyles[variant]} ${className}`;
+---
+
+{
+  href ? (
+    <a href={href} class={classes} id={id} {...rest}>
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class={classes} onclick={onclick} id={id} {...rest}>
+      <slot />
+    </button>
+  )
+}
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    border: 2px solid transparent;
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
+    text-decoration: none;
+    font-family: var(--font-sans);
+  }
+
+  .btn:active {
+    transform: scale(0.98);
+  }
+
+  .btn--primary {
+    background: var(--color-primary);
+    color: var(--color-surface);
+  }
+
+  .btn--primary:hover {
+    background: var(--color-primary-hover);
+    box-shadow: 0 4px 14px rgba(26, 111, 191, 0.3);
+  }
+
+  .btn--secondary {
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+    border-color: var(--color-primary-light);
+  }
+
+  .btn--secondary:hover {
+    background: hsl(var(--hue-primary), 85%, 90%);
+    color: var(--color-primary-hover);
+  }
+
+  .btn--cta {
+    background: var(--color-cta);
+    color: var(--color-surface);
+  }
+
+  .btn--cta:hover {
+    background: var(--color-cta-hover);
+    box-shadow: 0 4px 14px rgba(22, 163, 74, 0.3);
+  }
+
+  .btn--outline {
+    background: transparent;
+    border-color: var(--color-border);
+    color: var(--color-text);
+  }
+
+  .btn--outline:hover {
+    background: var(--color-bg);
+    border-color: var(--color-text-muted);
+  }
+</style>

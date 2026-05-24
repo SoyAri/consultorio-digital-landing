@@ -1,0 +1,44 @@
+---
+import Card from './Card.astro';
+
+interface Props {
+  value: string;
+  label: string;
+  class?: string;
+  id?: string;
+}
+
+const { value, label, class: className = '', id } = Astro.props;
+---
+
+<Card class={`stat-card ${className}`} id={id} hoverEffect={true}>
+  <div class="stat-card__value">{value}</div>
+  <div class="stat-card__label">{label}</div>
+</Card>
+
+<style>
+  .stat-card {
+    text-align: center;
+    padding: var(--space-lg) var(--space-md);
+    background: var(--color-surface);
+  }
+
+  .stat-card__value {
+    font-size: clamp(2.25rem, 5vw, 3.25rem);
+    font-weight: 800;
+    font-family: var(--font-title);
+    color: var(--color-primary);
+    line-height: 1;
+    margin-bottom: var(--space-xs);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .stat-card__label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+</style>

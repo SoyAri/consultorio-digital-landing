@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* HSL Color System - Elite Palette */
+  --hue-primary: 212;   /* Royal Blue */
+  --hue-accent: 184;    /* Teal */
+  --hue-cta: 142;       /* Emerald */
+  
+  --color-primary: hsl(var(--hue-primary), 85%, 48%);
+  --color-primary-hover: hsl(var(--hue-primary), 85%, 40%);
+  --color-primary-muted: hsl(var(--hue-primary), 20%, 65%);
+  --color-primary-light: hsl(var(--hue-primary), 85%, 96%);
+  
+  --color-accent: hsl(var(--hue-accent), 80%, 40%);
+  --color-accent-hover: hsl(var(--hue-accent), 80%, 32%);
+  --color-accent-light: hsl(var(--hue-accent), 80%, 96%);
+  
+  --color-cta: hsl(var(--hue-cta), 70%, 42%);
+  --color-cta-hover: hsl(var(--hue-cta), 70%, 34%);
+  --color-cta-light: hsl(var(--hue-cta), 70%, 96%);
+
+  /* Neutrals */
+  --color-bg: hsl(210, 30%, 98%);
+  --color-surface: hsl(0, 0%, 100%);
+  --color-surface-glass: rgba(255, 255, 255, 0.75);
+  --color-surface-glass-dark: rgba(15, 23, 42, 0.08);
+  --color-text: hsl(222, 47%, 11%);
+  --color-text-muted: hsl(215, 16%, 47%);
+  --color-border: hsl(214, 32%, 91%);
+  --color-border-glow: rgba(26, 111, 191, 0.15);
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-title: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4.5rem;
+  --space-2xl: 7.5rem;
+
+  /* Border Radius */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px -2px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 12px 24px -6px rgba(15, 23, 42, 0.08), 0 4px 12px -4px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 24px 48px -12px rgba(15, 23, 42, 0.12), 0 8px 24px -8px rgba(15, 23, 42, 0.06);
+  --shadow-glow: 0 0 24px rgba(26, 111, 191, 0.25);
+
+  /* Layout */
+  --nav-height: 72px;
+  --max-width: 1280px;
+}

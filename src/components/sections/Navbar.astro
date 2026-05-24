@@ -1,54 +1,65 @@
 ---
+import { siteConfig } from '../../config/site';
+import Button from '../ui/Button.astro';
 ---
-<header class="navbar">
+<header class="navbar glass">
   <div class="container navbar__inner">
-    <a href="/" class="navbar__logo" aria-label="Consultorio Digital — Inicio">
-      <!-- TODO: Reemplazar con logo SVG o <img> oficial -->
+    <a href="/" class="navbar__logo" aria-label={`${siteConfig.name} — Inicio`}>
       <span class="navbar__logo-mark" aria-hidden="true">🦷</span>
-      <span class="navbar__logo-text">Consultorio Digital</span>
+      <span class="navbar__logo-text">{siteConfig.name}</span>
     </a>
 
     <nav class="navbar__links" aria-label="Navegación principal">
-      <a href="#pain-points" class="navbar__link">El Problema</a>
-      <a href="#solution" class="navbar__link">La Solución</a>
-      <a href="#benefits" class="navbar__link">Beneficios</a>
+      {
+        siteConfig.navigation.map((item) => (
+          <a href={item.href} class="navbar__link">
+            {item.label}
+          </a>
+        ))
+      }
     </nav>
 
-    <button
-      class="navbar__cta"
-      onclick="window.$crisp && window.$crisp.push(['do', 'chat:open'])"
-      type="button"
-    >
-      Hablar con un asesor
-    </button>
+    <div class="navbar__actions">
+      <Button
+        variant="cta"
+        class="navbar__cta animate-pulse-glow"
+        onclick="window.$crisp && window.$crisp.push(['do', 'chat:open'])"
+      >
+        Hablar con un asesor
+      </Button>
 
-    <button
-      class="navbar__hamburger"
-      id="hamburger"
-      aria-label="Abrir menú"
-      aria-expanded="false"
-      aria-controls="mobile-menu"
-      type="button"
-    >
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+      <button
+        class="navbar__hamburger"
+        id="hamburger"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        type="button"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </div>
 
-  <div class="navbar__mobile" id="mobile-menu">
+  <div class="navbar__mobile glass" id="mobile-menu">
     <nav aria-label="Menú móvil">
-      <a href="#pain-points" class="navbar__mobile-link">El Problema</a>
-      <a href="#solution" class="navbar__mobile-link">La Solución</a>
-      <a href="#benefits" class="navbar__mobile-link">Beneficios</a>
+      {
+        siteConfig.navigation.map((item) => (
+          <a href={item.href} class="navbar__mobile-link">
+            {item.label}
+          </a>
+        ))
+      }
     </nav>
-    <button
-      class="navbar__cta"
+    <Button
+      variant="cta"
+      class="navbar__mobile-cta"
       onclick="window.$crisp && window.$crisp.push(['do', 'chat:open'])"
-      type="button"
     >
       Hablar con un asesor
-    </button>
+    </Button>
   </div>
 </header>
 
@@ -65,11 +76,13 @@
       mobileMenu.classList.toggle('is-open');
       hamburger.setAttribute('aria-expanded', String(!isOpen));
       hamburger.setAttribute('aria-label', isOpen ? 'Abrir menú' : 'Cerrar menú');
+      hamburger.classList.toggle('is-active');
     });
 
     mobileMenu.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
         mobileMenu.classList.remove('is-open');
+        hamburger.classList.remove('is-active');
         hamburger.setAttribute('aria-expanded', 'false');
         hamburger.setAttribute('aria-label', 'Abrir menú');
       });
@@ -85,13 +98,12 @@
     right: 0;
     z-index: 100;
     height: var(--nav-height);
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
   }
 
   .navbar__inner {
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -104,14 +116,20 @@
     gap: 0.5rem;
     text-decoration: none;
     color: var(--color-text);
-    font-weight: 700;
-    font-size: 1rem;
+    font-weight: 800;
+    font-size: 1.15rem;
+    font-family: var(--font-title);
     flex-shrink: 0;
   }
 
   .navbar__logo-mark {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     line-height: 1;
+    transition: transform 0.3s ease;
+  }
+
+  .navbar__logo:hover .navbar__logo-mark {
+    transform: rotate(15deg) scale(1.1);
   }
 
   .navbar__links {
@@ -123,37 +141,47 @@
   .navbar__link {
     text-decoration: none;
     color: var(--color-text-muted);
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: color 0.15s;
+    font-size: 0.95rem;
+    font-weight: 600;
+    position: relative;
+    padding: 0.25rem 0;
+    transition: color 0.2s ease;
   }
 
   .navbar__link:hover {
     color: var(--color-primary);
   }
 
-  .navbar__cta {
-    background: var(--color-cta);
-    color: white;
-    border: none;
-    border-radius: var(--radius-sm);
-    padding: 0.55rem 1.2rem;
-    font-size: 0.875rem;
-    font-weight: 600;
-    cursor: pointer;
-    white-space: nowrap;
-    font-family: var(--font-sans);
-    transition: background 0.15s;
+  .navbar__link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--color-primary);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
   }
 
-  .navbar__cta:hover {
-    background: var(--color-cta-dark);
+  .navbar__link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
   }
 
+  .navbar__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  /* Hamburger styles with modern morphing */
   .navbar__hamburger {
     display: none;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 5px;
     background: none;
     border: none;
@@ -161,13 +189,28 @@
     padding: 0.5rem;
     width: 40px;
     height: 40px;
+    z-index: 110;
   }
 
   .navbar__hamburger span {
     display: block;
+    width: 22px;
     height: 2px;
     background: var(--color-text);
     border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .navbar__hamburger.is-active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .navbar__hamburger.is-active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .navbar__hamburger.is-active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
   }
 
   .navbar__mobile {
@@ -176,12 +219,12 @@
     top: var(--nav-height);
     left: 0;
     right: 0;
-    background: white;
     border-bottom: 1px solid var(--color-border);
     padding: var(--space-md);
     flex-direction: column;
-    gap: var(--space-sm);
+    gap: var(--space-md);
     box-shadow: var(--shadow-md);
+    animation: fadeIn 0.2s ease-out;
   }
 
   .navbar__mobile.is-open {
@@ -197,11 +240,21 @@
   .navbar__mobile-link {
     text-decoration: none;
     color: var(--color-text);
-    font-size: 1rem;
-    font-weight: 500;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid var(--color-border);
+    font-size: 1.05rem;
+    font-weight: 600;
+    padding: 0.75rem 0.5rem;
+    border-radius: var(--radius-sm);
     display: block;
+    transition: background 0.2s;
+  }
+
+  .navbar__mobile-link:hover {
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+  }
+
+  .navbar__mobile-cta {
+    width: 100%;
   }
 
   .navbar__spacer {

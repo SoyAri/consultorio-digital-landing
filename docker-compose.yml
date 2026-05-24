@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  landing:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: consultorio_digital_landing
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    read_only: false # Nginx alpine needs write permissions on /var/cache/nginx
+    tmpfs:
+      - /var/cache/nginx
+      - /var/run
