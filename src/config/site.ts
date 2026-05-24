@@ -148,13 +148,13 @@ export const siteConfig: SiteConfig = {
     ]
   },
   benefits: {
-    eyebrow: "Por qué elegirnos",
+    eyebrow: "Beneficios",
     headline: "Más tiempo para tus pacientes, menos tiempo en papeleo",
     subheadline: "Las clínicas que usan Consultorio Digital reportan menos inasistencias, expedientes más completos y un flujo de trabajo más tranquilo desde el primer mes.",
     metrics: [
       { value: "-60%", label: "Inasistencias gracias a recordatorios automáticos" },
       { value: "15 min", label: "Ahorrados por cita en búsqueda de expedientes" },
-      { value: "100%", label: "Digital — sin papel, sin información perdida" }
+      { value: "100% Digital", label: "Sin papel y sin información perdida" }
     ],
     rolesSection: {
       title: "Cada persona en tu clínica tiene su propio acceso",
